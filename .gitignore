@@ -2,3 +2,4 @@ boc-unity/Library/
 *.csproj
 *.sln
 *.userprefs
+.vs
