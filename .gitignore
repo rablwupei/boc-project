@@ -2,6 +2,7 @@ boc-unity/Library/
 *.csproj
 *.sln
 *.userprefs
+.vs
 boc-unity/Assets/ZFBrowser/
 boc-unity/Assets/ZFBrowser.meta
 boc-unity/Temp/
