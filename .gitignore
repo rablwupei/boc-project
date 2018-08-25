@@ -6,5 +6,7 @@ boc-unity/Library/
 boc-unity/Assets/ZFBrowser/
 boc-unity/Assets/ZFBrowser.meta
 boc-unity/Temp/
+boc-unity/obj/
 share/
 wp/
+
