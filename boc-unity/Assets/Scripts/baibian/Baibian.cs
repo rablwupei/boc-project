@@ -21,6 +21,7 @@ namespace wuyy {
 
 		public static Baibian instance;
 
+		public Canvas canvas;
 		public CameraFollow cameraFollow;
 		public Transform bgfg;
 		public Transform roles;
@@ -136,9 +137,29 @@ namespace wuyy {
 			}
 		}
 
+		// touch
+
 		public void UITouchClick(BaseEventData data) {
-			onTouchClick(((PointerEventData)data).pointerPressRaycast.screenPosition);
+			var eventData = (PointerEventData)data;
+			var screenPos = eventData.pointerPressRaycast.screenPosition;
+			var ray = mainCamera.ScreenPointToRay(screenPos);
+			var hit = Physics2D.GetRayIntersection(ray, 100f, ~0);
+			if (hit.collider != null) {
+				uiOptionRoot.SetActive(true);
+				screenPos = mainCamera.WorldToScreenPoint(hit.transform.position);
+				Vector2 pos;
+				RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)uiOptionPanel.parent,
+					screenPos, mainCamera, out pos);
+				uiOptionPanel.localPosition = pos;
+			} else {
+				onTouchClick(screenPos);
+			}
 		}
+
+		// UI
+
+		public GameObject uiOptionRoot;
+		public Transform uiOptionPanel;
 
 	}
 
