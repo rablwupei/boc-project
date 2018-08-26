@@ -531,6 +531,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 733287436}
+--- !u!4 &763625555 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4700617871391258, guid: 641a07f2785f54e988c2bc9525a81488,
+    type: 2}
+  m_PrefabInternal: {fileID: 312688821}
 --- !u!1 &856431223
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +629,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9afc59801df01485d8553b5f89c995b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  follow: {fileID: 1366853316}
+  min_x: -3.17
+  min_y: -1.7
+  max_x: 3.17
+  max_y: 1.7
+  follow1: {fileID: 763625555}
+  follow2: {fileID: 946531506}
+--- !u!4 &946531506 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4819399418947920, guid: 069527bbb86ba4a5fbbe4f275506aaec,
+    type: 2}
+  m_PrefabInternal: {fileID: 1538412274}
 --- !u!1 &949696150
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,7 +956,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4351922975346546, guid: 069527bbb86ba4a5fbbe4f275506aaec, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.23
+      value: 3.67
       objectReference: {fileID: 0}
     - target: {fileID: 4351922975346546, guid: 069527bbb86ba4a5fbbe4f275506aaec, type: 2}
       propertyPath: m_LocalPosition.y
