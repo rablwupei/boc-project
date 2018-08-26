@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace net.wuyy {
+namespace wuyy {
 
-	public class LeftPanelClickMove : MonoBehaviour {
+	public class BodyDidi : Body {
 
 	}
 

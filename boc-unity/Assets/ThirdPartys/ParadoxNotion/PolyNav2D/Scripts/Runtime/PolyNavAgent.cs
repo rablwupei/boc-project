@@ -69,7 +69,7 @@ public class PolyNavAgent : MonoBehaviour{
 	///The position of the agent
 	public Vector2 position{
 		get {return transform.position + (Vector3)centerOffset;}
-		set {transform.position = new Vector3(value.x, value.y, transform.position.z) - (Vector3)centerOffset;}
+		set {transform.position = new Vector3(value.x, value.y, value.y) - (Vector3)centerOffset;}
 	}
 
 	///The current active path of the agent
@@ -225,7 +225,7 @@ public class PolyNavAgent : MonoBehaviour{
 	}
 
 	//main loop
-	void LateUpdate(){
+	void Update(){
 
 		if (map == null){
 			return;

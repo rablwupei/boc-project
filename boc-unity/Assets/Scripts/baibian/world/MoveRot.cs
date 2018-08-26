@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace net.wuyy {
+namespace wuyy {
 
 	public class MoveRot : MonoBehaviour {
 
@@ -11,9 +11,20 @@ namespace net.wuyy {
 		private Vector2 lastDir;
 		private float originalScaleX;
 
-		private PolyNavAgent _agent;
-		private PolyNavAgent agent{
-			get {return _agent != null? _agent : _agent = GetComponent<PolyNavAgent>();}
+		Role _role;
+		Role role {
+			get {
+				if (_role == null) {
+					_role = GetComponent<Role>();
+				}
+				return _role;
+			}
+		}
+
+		private PolyNavAgent agent {
+			get {
+				return role.agent;
+			}
 		}
 
 		void Awake(){
@@ -35,6 +46,8 @@ namespace net.wuyy {
 
 				if (dir == Vector2.zero){
 					//Debug.Log("IDLE");
+				} else {
+					
 				}
 
 				if (dir.x == 1){
