@@ -8,7 +8,7 @@ namespace net.wuyy {
 
 		public Transform follow;
 
-		void Update () {
+		void LateUpdate () {
 			if (follow) {
 				transform.position = follow.position;
 			}
