@@ -19,10 +19,12 @@ namespace wuyy {
 		}
 
 		PolyNavAgent _agent;
+		bool _findAgent;
 		public PolyNavAgent agent {
 			get {
-				if (_agent == null) {
+				if (_agent == null && !_findAgent) {
 					_agent = GetComponent<PolyNavAgent>();
+					_findAgent = true;
 				}
 				return _agent;
 			}
@@ -53,6 +55,9 @@ namespace wuyy {
 		public void ChangeRoleBody(BaibianType type) {
 			if (_curBody) {
 				_curBody.gameObject.SetActive(false);
+				if (agent) {
+					agent.Stop();
+				}
 			}
 			Vector3 pos;
 			_curBody = GetBody(type, out pos);
