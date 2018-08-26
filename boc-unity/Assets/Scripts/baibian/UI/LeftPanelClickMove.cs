@@ -6,8 +6,6 @@ namespace net.wuyy {
 
 	public class LeftPanelClickMove : MonoBehaviour {
 
-
-
 	}
 
 }
