@@ -17,11 +17,10 @@ namespace wuyy {
 
 	public class Baibian : MonoBehaviour {
 
-		public static event Action<Vector3> onTouchClick;
-
 		public static Baibian instance;
 
 		public Canvas canvas;
+		public RectTransform canvasTrans;
 		public CameraFollow cameraFollow;
 		public Transform bgfg;
 		public Transform roles;
@@ -139,27 +138,56 @@ namespace wuyy {
 
 		// touch
 
-		public void UITouchClick(BaseEventData data) {
+		public static Vector2 WorldToCanvas(RectTransform canvas_rect, Vector3 viewport_position) {
+			return new Vector2((viewport_position.x * canvas_rect.sizeDelta.x) - (canvas_rect.sizeDelta.x * 0.5f),
+				(viewport_position.y * canvas_rect.sizeDelta.y) - (canvas_rect.sizeDelta.y * 0.5f));
+		}
+
+		PointerEventData _pressEvent;
+		bool _pressRole;
+		float _pressTime;
+
+		public void UITouchPress(BaseEventData data) {
 			var eventData = (PointerEventData)data;
-			var screenPos = eventData.pointerPressRaycast.screenPosition;
+			var screenPos = eventData.position;
 			var ray = mainCamera.ScreenPointToRay(screenPos);
-			var hit = Physics2D.GetRayIntersection(ray, 100f, ~0);
+			var hit = Physics2D.GetRayIntersection(ray);
 			if (hit.collider != null) {
 				uiOptionRoot.SetActive(true);
-				screenPos = mainCamera.WorldToScreenPoint(hit.transform.position);
-				Vector2 pos;
-				RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)uiOptionPanel.parent,
-					screenPos, mainCamera, out pos);
-				uiOptionPanel.localPosition = pos;
+				var viewPos = mainCamera.WorldToViewportPoint(hit.transform.position);
+				uiOptionPanel.anchoredPosition = WorldToCanvas(canvasTrans, viewPos);
+				_pressRole = true;
+				_pressEvent = null;
+				_roleDidi.StopMove();
 			} else {
-				onTouchClick(screenPos);
+				_pressRole = false;
+				_pressEvent = eventData;
+				_pressTime = Time.realtimeSinceStartup;
+				_roleDidi.StartMove(_pressEvent.position);
+			}
+		}
+
+		public void UITouchUp(BaseEventData data) {
+			if (!_pressRole) {
+				if (Time.realtimeSinceStartup - _pressTime < 0.2f) {
+					_roleDidi.StartMove(_pressEvent.position);
+				} else {
+					_roleDidi.StopMove();
+				}
+			}
+			_pressEvent = null;
+		}
+
+		void Update() {
+			if (_pressEvent != null) {
+				_roleDidi.StartMove(_pressEvent.position);
 			}
 		}
 
 		// UI
 
 		public GameObject uiOptionRoot;
-		public Transform uiOptionPanel;
+		public RectTransform uiOptionPanel;
 
 	}
 
@@ -171,9 +199,6 @@ namespace wuyy {
 		public int GetHashCode (BaibianType obj) {
 			return ((int)obj).GetHashCode();
 		}
-		
-		
 	}
-
 
 }

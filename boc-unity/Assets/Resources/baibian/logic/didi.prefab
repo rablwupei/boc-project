@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4719958506471076}
   - component: {fileID: 114515200542842042}
   - component: {fileID: 114127896684707204}
-  - component: {fileID: 114759133285261170}
   - component: {fileID: 114506731918851868}
   m_Layer: 0
   m_Name: didi
@@ -80,8 +79,8 @@ MonoBehaviour:
   _map: {fileID: 0}
   maxSpeed: 7
   mass: 20
-  stoppingDistance: 0.1
-  slowingDistance: 0.5
+  stoppingDistance: 0.2
+  slowingDistance: 1
   accelerationRate: 10000
   decelerationRate: 10000
   lookAheadDistance: 1
@@ -93,14 +92,3 @@ MonoBehaviour:
   restrict: 0
   closerPointOnInvalid: 1
   debugPath: 1
---- !u!114 &114759133285261170
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1813360399809422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 496a1f889d7b54f60a2ad948ef85a342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

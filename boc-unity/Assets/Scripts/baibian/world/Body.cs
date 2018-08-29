@@ -34,6 +34,26 @@ namespace wuyy {
 			}
 		}
 
+		SpriteRenderer[] _renders;
+		int[] _rendersSort;
+		bool _cache;
+
+		void Cache() {
+			_renders = GetComponentsInChildren<SpriteRenderer>();
+			_rendersSort = new int[_renders.Length];
+			for (int i = 0; i < _renders.Length; i++) {
+				_rendersSort[i] = _renders[i].sortingOrder;
+			}
+			_cache = true;
+		}
+
+		public void UpdateSortingLayer(float y) {
+			if (!_cache) Cache();
+			for (int i = 0; i < _renders.Length; i++) {
+				_renders[i].sortingOrder = _rendersSort[i] + (int)(-y * 1000);
+			}
+		}
+
 	}
 
 

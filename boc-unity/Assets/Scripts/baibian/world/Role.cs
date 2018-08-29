@@ -37,7 +37,9 @@ namespace wuyy {
 
 		Dictionary<BaibianType, Body> _navCache = new Dictionary<BaibianType, Body>(DictionaryBaibianType.Default);
 		Dictionary<BaibianType, Vector3> _posCache = new Dictionary<BaibianType, Vector3>(DictionaryBaibianType.Default);
-		Body GetBody(BaibianType type, out Vector3 pos) {
+		Dictionary<BaibianType, Quaternion> _rotCache = new Dictionary<BaibianType, Quaternion>(DictionaryBaibianType.Default);
+		Dictionary<BaibianType, Vector3> _scaleCache = new Dictionary<BaibianType, Vector3>(DictionaryBaibianType.Default);
+		Body GetBody(BaibianType type, out Vector3 pos, out Quaternion rot, out Vector3 scale) {
 			Body ins;
 			if (!_navCache.TryGetValue(type, out ins)) {
 				var prefab = Resources.Load<Body>(GetBodyPath(type));
@@ -46,8 +48,14 @@ namespace wuyy {
 				_navCache[type] = ins;
 				pos = prefab.transform.localPosition;
 				_posCache[type] = pos;
+				rot = prefab.transform.localRotation;
+				_rotCache[type] = rot;
+				scale = prefab.transform.localScale;
+				_scaleCache[type] = scale;
 			} else {
 				pos = _posCache[type];
+				rot = _rotCache[type];
+				scale = _scaleCache[type];
 			}
 			return ins;
 		}
@@ -60,17 +68,70 @@ namespace wuyy {
 				}
 			}
 			Vector3 pos;
-			_curBody = GetBody(type, out pos);
+			Quaternion rot;
+			Vector3 scale;
+			_curBody = GetBody(type, out pos, out rot, out scale);
 			_curBody.transform.localPosition = Vector3.zero;
-			transform.localPosition = new Vector3(pos.x, pos.y, pos.y);
+			_curBody.transform.localRotation = Quaternion.identity;
+			_curBody.transform.localScale = Vector3.one;
+			transform.localPosition = pos;
+			transform.localRotation = rot;
+			transform.localScale = scale;
 			if (_curBody) {
 				_curBody.gameObject.SetActive(true);
 			}
 		}
 
+		// anim
+
 		public void Play(Anim type) {
 			_curBody.Play(type);
 		}
+
+		// updatelayer
+
+		float _lastY = float.MinValue;
+		void LateUpdate() {
+			var y = transform.localPosition.y;
+			if (_lastY != y) {
+				_curBody.UpdateSortingLayer(y);
+				_lastY = y;
+			}
+		}
+
+		// move
+
+		Camera _camera;
+		Camera mainCamera {
+			get {
+				if (_camera == null) {
+					_camera = Baibian.instance.mainCamera;
+				}
+				return _camera;
+			}
+		}
+
+		System.Action<bool> _onMoveFinish;
+
+		public void StartMove(Vector3 screenPos) {
+			if (_onMoveFinish == null) {
+				_onMoveFinish = OnMoveFinish;
+			}
+			var value = agent.SetDestination(mainCamera.ScreenToWorldPoint(screenPos), _onMoveFinish);
+			if (value) {
+				Play(Anim.Run);
+			}
+		}
+
+		public void StopMove() {
+			agent.Stop();
+			Play(Anim.Stand);
+		}
+
+		void OnMoveFinish(bool value) {
+			Play(Anim.Stand);
+		}
+
 
 	}
 
