@@ -9,9 +9,8 @@ namespace wuyy {
 	public enum BaibianType {
 		tongnian,
 		haiwai,
-		chuguo,
 		chengjia,
-		zinv,
+		jiating,
 		wannian,
 	}
 
