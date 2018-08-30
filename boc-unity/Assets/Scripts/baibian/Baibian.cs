@@ -25,6 +25,10 @@ namespace wuyy {
 		public Transform roles;
 		public Transform nav;
 
+		public UIHuanying uiHuanying;
+		public UIGuocheng uiGuocheng;
+		public UIShouye uiShouye;
+
 		Baibian() {
 			instance = this;
 		}
@@ -36,16 +40,17 @@ namespace wuyy {
 		}
 
 		void Start() {
-			Change(BaibianType.tongnian, true);
+			//Change(BaibianType.tongnian, true);
 		}
 
 		BaibianType _baibianType;
 
-		public void Change(int type) {
-			Change((BaibianType)type);
+		public void Change(int type, bool force = false) {
+			Change((BaibianType)type, force);
 		}
 
 		public void Change(BaibianType type, bool force = false) {
+			uiGuocheng.gameObject.SetActive(true);
 			if (_baibianType != type || force) {
 				_baibianType = type;
 				ChangeNav(type);
@@ -152,9 +157,8 @@ namespace wuyy {
 			var ray = mainCamera.ScreenPointToRay(screenPos);
 			var hit = Physics2D.GetRayIntersection(ray);
 			if (hit.collider != null) {
-				uiOptionRoot.SetActive(true);
 				var viewPos = mainCamera.WorldToViewportPoint(hit.transform.position);
-				uiOptionPanel.anchoredPosition = WorldToCanvas(canvasTrans, viewPos);
+				uiGuocheng.OpenMenu(WorldToCanvas(canvasTrans, viewPos));
 				_pressRole = true;
 				_pressEvent = null;
 				_roleDidi.StopMove();
@@ -183,10 +187,6 @@ namespace wuyy {
 			}
 		}
 
-		// UI
-
-		public GameObject uiOptionRoot;
-		public RectTransform uiOptionPanel;
 
 	}
 

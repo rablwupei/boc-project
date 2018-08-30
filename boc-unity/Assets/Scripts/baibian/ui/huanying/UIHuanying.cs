@@ -11,6 +11,7 @@ namespace wuyy {
 		public List<DOTweenAnimation> tweenAnims;
 
 		public void Close() {
+			Baibian.instance.uiShouye.gameObject.SetActive(true);
 			DOTweenAnimation anim = null;
 			foreach (var item in tweenAnims) {
 				item.DOPlayForward();

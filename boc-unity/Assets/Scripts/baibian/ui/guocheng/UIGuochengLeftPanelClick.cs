@@ -5,7 +5,7 @@ using DG.Tweening;
 
 namespace wuyy {
 
-	public class LeftPanelClick : MonoBehaviour {
+	public class UIGuochengLeftPanelClick : MonoBehaviour {
 		public DOTweenAnimation[] tweens;
 
 		bool _open;
