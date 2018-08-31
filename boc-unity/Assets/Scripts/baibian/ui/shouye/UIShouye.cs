@@ -23,7 +23,7 @@ namespace wuyy {
 				next = Time.realtimeSinceStartup + 1;
 				var now = DateTime.Now;
 				day.text = now.ToString("yyyy-MM-dd");
-				time.text = now.Hour <= 12 ? "上午" : "下午" + now.ToString("hh:mm");
+				time.text = (now.Hour <= 12 && now.Hour > 0 ? "上午" : "下午") + now.ToString("hh:mm");
 			}
 
 		}

@@ -29,6 +29,7 @@ namespace wuyy {
 		public UIHuanying uiHuanying;
 		public UIGuocheng uiGuocheng;
 		public UIShouye uiShouye;
+		public UIDuihuakuang uiDuihuakuang;
 
 		GameObject _bgShouye;
 		public GameObject bgShouye {
@@ -52,6 +53,7 @@ namespace wuyy {
 		}
 
 		void Start() {
+			uiDuihuakuang.gameObject.SetActive(false);
 			uiShouye.gameObject.SetActive(false);
 			uiGuocheng.gameObject.SetActive(false);
 			uiHuanying.gameObject.SetActive(true);
@@ -193,7 +195,7 @@ namespace wuyy {
 			var hit = Physics2D.GetRayIntersection(ray);
 			if (hit.collider != null) {
 				var viewPos = mainCamera.WorldToViewportPoint(hit.transform.position);
-				uiGuocheng.OpenMenu(WorldToCanvas(canvasTrans, viewPos));
+				uiGuocheng.OpenMenu(WorldToCanvas(canvasTrans, viewPos), _baibianType);
 				_pressRole = true;
 				_pressEvent = null;
 				_roleDidi.StopMove();
