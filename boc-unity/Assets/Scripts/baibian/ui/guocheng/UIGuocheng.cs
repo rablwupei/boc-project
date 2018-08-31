@@ -18,6 +18,10 @@ namespace wuyy {
 			Baibian.instance.Change(type);
 		}
 
+		public void ButtonShouye() {
+			Baibian.instance.Change(BaibianType.none);
+		}
+
 	}
 
 }

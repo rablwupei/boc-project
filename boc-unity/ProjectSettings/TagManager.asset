@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - WorldTouch
-  - 
+  - BgShouye
   - 
   - 
   - 
@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Bg_shouye
+    uniqueID: 572507457
+    locked: 0
+  - name: Role_shouye
+    uniqueID: 990971165
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

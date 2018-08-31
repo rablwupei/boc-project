@@ -12,6 +12,7 @@ namespace wuyy {
 		chengjia,
 		jiating,
 		wannian,
+		none,
 	}
 
 	public class Baibian : MonoBehaviour {
@@ -29,6 +30,17 @@ namespace wuyy {
 		public UIGuocheng uiGuocheng;
 		public UIShouye uiShouye;
 
+		GameObject _bgShouye;
+		public GameObject bgShouye {
+			get {
+				if (!_bgShouye) {
+					var prefab = Resources.Load<GameObject>("baibian/world/bgfg_shouye");
+					_bgShouye = Instantiate(prefab, bgfg);
+				}
+				return _bgShouye;
+			}
+		}
+
 		Baibian() {
 			instance = this;
 		}
@@ -40,7 +52,9 @@ namespace wuyy {
 		}
 
 		void Start() {
-			//Change(BaibianType.tongnian, true);
+			uiShouye.gameObject.SetActive(false);
+			uiGuocheng.gameObject.SetActive(false);
+			uiHuanying.gameObject.SetActive(true);
 		}
 
 		BaibianType _baibianType;
@@ -50,7 +64,9 @@ namespace wuyy {
 		}
 
 		public void Change(BaibianType type, bool force = false) {
-			uiGuocheng.gameObject.SetActive(true);
+			var isNone = type == BaibianType.none;
+			uiGuocheng.gameObject.SetActive(!isNone);
+			uiShouye.gameObject.SetActive(isNone);
 			if (_baibianType != type || force) {
 				_baibianType = type;
 				ChangeNav(type);
@@ -78,15 +94,28 @@ namespace wuyy {
 		RoleJiejie _roleJiejie;
 
 		public void ChangeRoleBody(BaibianType type) {
+			if (type == BaibianType.none) {
+				if (_roleDidi != null) {
+					_roleDidi.gameObject.SetActive(false);
+				}
+				if (_roleJiejie != null) {
+					_roleJiejie.gameObject.SetActive(false);
+				}
+				cameraFollow.follow1 = null;
+				cameraFollow.follow2 = null;
+				return;
+			}
 			if (_roleDidi == null) {
 				_roleDidi = Role.CreateDidi();
 			}
 			_roleDidi.agent.map = _curNav;
 			_roleDidi.ChangeRoleBody(type);
+			_roleDidi.gameObject.SetActive(true);
 			if (_roleJiejie == null) {
 				_roleJiejie = Role.CreateJiejie();
 			}
 			_roleJiejie.ChangeRoleBody(type);
+			_roleJiejie.gameObject.SetActive(true);
 			cameraFollow.follow1 = _roleDidi.cameraFollow;
 			cameraFollow.follow2 = _roleJiejie.cameraFollow;
 		}
@@ -94,12 +123,15 @@ namespace wuyy {
 
 		//nav
 		Dictionary<BaibianType, PolyNav2D> _navCache = new Dictionary<BaibianType, PolyNav2D>(DictionaryBaibianType.Default);
-		PolyNav2D GetNav(BaibianType biabian) {
+		PolyNav2D GetNav(BaibianType type) {
+			if (type == BaibianType.none) {
+				return null;
+			}
 			PolyNav2D ins;
-			if (!_navCache.TryGetValue(biabian, out ins)) {
-				ins = Instantiate(Resources.Load<PolyNav2D>("baibian/nav/nav_" + biabian.ToString()));
+			if (!_navCache.TryGetValue(type, out ins)) {
+				ins = Instantiate(Resources.Load<PolyNav2D>("baibian/nav/nav_" + type.ToString()));
 				ins.transform.SetParent(nav, false);
-				_navCache[biabian] = ins;
+				_navCache[type] = ins;
 			}
 			return ins;
 		}
@@ -117,12 +149,15 @@ namespace wuyy {
 		//Bgfg
 
 		Dictionary<BaibianType, Animation> _bgfgCache = new Dictionary<BaibianType, Animation>(DictionaryBaibianType.Default);
-		Animation GetBgfg(BaibianType biabian) {
+		Animation GetBgfg(BaibianType type) {
+			if (type == BaibianType.none) {
+				return null;
+			}
 			Animation anim;
-			if (!_bgfgCache.TryGetValue(biabian, out anim)) {
-				anim = Instantiate(Resources.Load<Animation>("baibian/world/bgfg_" + biabian.ToString()));
+			if (!_bgfgCache.TryGetValue(type, out anim)) {
+				anim = Instantiate(Resources.Load<Animation>("baibian/world/bgfg_" + type.ToString()));
 				anim.transform.SetParent(bgfg, false);
-				_bgfgCache[biabian] = anim;
+				_bgfgCache[type] = anim;
 			}
 			return anim;
 		}
