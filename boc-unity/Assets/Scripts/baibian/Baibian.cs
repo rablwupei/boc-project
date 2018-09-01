@@ -200,16 +200,25 @@ namespace wuyy {
 			var ray = mainCamera.ScreenPointToRay(screenPos);
 			var hit = Physics2D.GetRayIntersection(ray);
 			if (hit.collider != null) {
-				var viewPos = mainCamera.WorldToViewportPoint(hit.transform.position);
-				uiGuocheng.OpenMenu(WorldToCanvas(canvasTrans, viewPos), _baibianType);
-				_pressRole = true;
-				_pressEvent = null;
-				_roleDidi.StopMove();
+				var role = hit.transform.GetComponentInParent<Role>();
+				if (role != null) {
+					if (role is RoleJiejie) {
+						var viewPos = mainCamera.WorldToViewportPoint(hit.transform.position);
+						uiGuocheng.OpenMenu(WorldToCanvas(canvasTrans, viewPos), _baibianType);
+					} else {
+						//PlayAnim
+					}
+					_pressRole = true;
+					_pressEvent = null;
+					_roleDidi.StopMove();
+				}
 			} else {
-				_pressRole = false;
-				_pressEvent = eventData;
-				_pressTime = Time.realtimeSinceStartup;
-				_roleDidi.StartMove(_pressEvent.position);
+				if (_baibianType != BaibianType.wannian) {
+					_pressRole = false;
+					_pressEvent = eventData;
+					_pressTime = Time.realtimeSinceStartup;
+					_roleDidi.StartMove(_pressEvent.position);
+				}
 			}
 		}
 

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4023967874035368}
   - component: {fileID: 114754266063869302}
   - component: {fileID: 61077285036320740}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: jiejie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16756877, y: 3.1417615}
+  m_Offset: {x: -0.066901445, y: 2.4946153}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -64,7 +64,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7947106, y: 4.0615973}
+  m_Size: {x: 2.5137625, y: 5.6435122}
   m_EdgeRadius: 0
 --- !u!114 &114754266063869302
 MonoBehaviour:
