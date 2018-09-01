@@ -26,6 +26,8 @@ namespace wuyy {
 		public Transform roles;
 		public Transform nav;
 		public List<AudioSource> audios;
+		public AudioSource audioMusic;
+		public AudioSource audioSound;
 
 		public UIHuanying uiHuanying;
 		public UIGuocheng uiGuocheng;
@@ -59,13 +61,19 @@ namespace wuyy {
 		void Start() {
 			AudioListener.volume = PlayerPrefs.GetFloat(Key_volume, 1f);
 
+			uiHuanying.gameObject.SetActive(true);
+			Reset();
+		}
+
+		void Reset() {
 			uiDuihuakuang.gameObject.SetActive(false);
 			uiShouye.gameObject.SetActive(false);
 			uiGuocheng.gameObject.SetActive(false);
-			uiHuanying.gameObject.SetActive(true);
+			Change(BaibianType.none, true);
 		}
 
 		BaibianType _baibianType;
+		public BaibianType baibianType { get { return _baibianType; } }
 
 		public void Change(int type, bool force = false) {
 			Change((BaibianType)type, force);
@@ -111,6 +119,7 @@ namespace wuyy {
 				}
 				cameraFollow.follow1 = null;
 				cameraFollow.follow2 = null;
+				StopSound();
 				return;
 			}
 			if (_roleDidi == null) {
@@ -126,6 +135,12 @@ namespace wuyy {
 			_roleJiejie.gameObject.SetActive(true);
 			cameraFollow.follow1 = _roleDidi.cameraFollow;
 			cameraFollow.follow2 = _roleJiejie.cameraFollow;
+			foreach (var item in uiGuocheng.menus) {
+				if (item.type == type) {
+					PlaySound(item.audioClip);
+					break;
+				}
+			}
 		}
 
 
@@ -233,9 +248,21 @@ namespace wuyy {
 			_pressEvent = null;
 		}
 
+		// close auto
+
+		float _lastKeyDown;
 		void Update() {
 			if (_pressEvent != null) {
 				_roleDidi.StartMove(_pressEvent.position);
+			}
+			if (Input.anyKeyDown) {
+				_lastKeyDown = Time.realtimeSinceStartup;
+			} else {
+				if (Time.realtimeSinceStartup - _lastKeyDown > 3 * 60f &&
+					!uiHuanying.gameObject.activeSelf) {
+					Reset();
+					uiHuanying.Open();
+				}
 			}
 		}
 
@@ -251,6 +278,15 @@ namespace wuyy {
 			foreach (var item in audios) {
 				item.gameObject.SetActive(false);
 			}
+		}
+
+		public void PlaySound(AudioClip clip) {
+			audioSound.Stop();
+			audioSound.PlayOneShot(clip);
+		}
+
+		public void StopSound() {
+			audioSound.Stop();
 		}
 
 		//web

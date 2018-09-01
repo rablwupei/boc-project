@@ -16,6 +16,7 @@ namespace wuyy {
 		public class Menu {
 			public BaibianType type;
 			public GameObject go;
+			public AudioClip audioClip;
 		}
 		public List<Menu> menus;
 
@@ -36,6 +37,11 @@ namespace wuyy {
 
 		void OnEnable() {
 			yinliangGo.SetActive(false);
+			uiOptionRoot.SetActive(false);
+		}
+
+		void OnDisable() {
+			Baibian.instance.StopSound();
 		}
 
 		public void OpenMenu(Vector3 pos, BaibianType type) {
@@ -67,7 +73,7 @@ namespace wuyy {
 			if (type == MenuItemType.专家连线) {
 				Baibian.instance.OpenUrl(WebType.专家连线);
 			} else if (type != MenuItemType.Empty) {
-				Baibian.instance.uiDuihuakuang.Show(type);
+				Baibian.instance.uiDuihuakuang.Show(Baibian.instance.baibianType, type);
 			}
 		}
 

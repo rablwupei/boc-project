@@ -9,14 +9,20 @@ namespace wuyy {
 
 		public Text text;
 
+		public GameObject gege;
+		public GameObject jiejie;
+
 		public void BgClick() {
 			gameObject.SetActive(false);
 		}
 
-		public void Show(MenuItemType type) {
+		public void Show(BaibianType baibianType, MenuItemType type) {
+			int value = (int)baibianType;
+			gege.SetActive(value % 2 != 0);
+			jiejie.SetActive(value % 2 == 0);
 			gameObject.SetActive(true);
 			if (strs.ContainsKey(type)) {
-				text.text = strs[type];
+				text.text = strs[type].ToString();
 			} else {
 				text.text = "";
 			}
@@ -31,7 +37,7 @@ namespace wuyy {
 			{MenuItemType.外币现金预约, "外币现⾦预约：提供25个币种外币现钞服务，更有⼩票⾯现钞和外币零钱包可供选择。"},
 			{MenuItemType.账单分期, "账单分期：将最近已出账单中满⾜条件的交易，设置为分期付款，可享⼿续费优惠，缓解短期资⾦压⼒。"},
 			{MenuItemType.常春树, "常青树借记IC卡：⾯向养⽼客户推出的专属借记卡产品，具有惠办卡、惠⽤卡、惠健康、惠消费、惠旅游等多项专属优惠和服务。"},
-			{MenuItemType.大额存款, "⼤额存单：保本保息，利率最⾼上浮50%，部分靠档计息，可提前⽀取，流动性好。"},
+			{MenuItemType.大额存款, "大⼤额存单：保本保息，利率最⾼上浮50%，部分靠档计息，可提前⽀取，流动性好。"},
 			{MenuItemType.宝宝存钱罐, "宝宝存钱罐：⽤电⼦零花钱奖励孩⼦，培养孩⼦的⾦钱观；可通过转账或者⽀付的⽅式使⽤零花钱。"},
 		};
 
