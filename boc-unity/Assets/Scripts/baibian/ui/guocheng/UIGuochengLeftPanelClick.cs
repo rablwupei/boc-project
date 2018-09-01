@@ -8,6 +8,15 @@ namespace wuyy {
 	public class UIGuochengLeftPanelClick : MonoBehaviour {
 		public DOTweenAnimation[] tweens;
 
+		void OnDisable() {
+			if (_open) {
+				OnBackClick();
+				foreach (var tween in tweens) {
+					tween.DOComplete();
+				}
+			}
+		}
+
 		bool _open;
 		public void OnBackClick() {
 			foreach (var tween in tweens) {

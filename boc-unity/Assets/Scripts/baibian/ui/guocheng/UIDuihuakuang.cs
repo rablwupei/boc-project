@@ -13,6 +13,10 @@ namespace wuyy {
 			gameObject.SetActive(false);
 		}
 
+		public void Show(MenuItemType type) {
+			gameObject.SetActive(true);
+		}
+
 	}
 
 

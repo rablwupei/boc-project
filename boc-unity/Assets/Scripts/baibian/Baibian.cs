@@ -25,11 +25,13 @@ namespace wuyy {
 		public Transform bgfg;
 		public Transform roles;
 		public Transform nav;
+		public List<AudioSource> audios;
 
 		public UIHuanying uiHuanying;
 		public UIGuocheng uiGuocheng;
 		public UIShouye uiShouye;
 		public UIDuihuakuang uiDuihuakuang;
+		public UIWeb prefabUIWeb;
 
 		GameObject _bgShouye;
 		public GameObject bgShouye {
@@ -52,7 +54,11 @@ namespace wuyy {
 			}
 		}
 
+		public const string Key_volume = "baibian_volume";
+
 		void Start() {
+			AudioListener.volume = PlayerPrefs.GetFloat(Key_volume, 1f);
+
 			uiDuihuakuang.gameObject.SetActive(false);
 			uiShouye.gameObject.SetActive(false);
 			uiGuocheng.gameObject.SetActive(false);
@@ -221,6 +227,28 @@ namespace wuyy {
 		void Update() {
 			if (_pressEvent != null) {
 				_roleDidi.StartMove(_pressEvent.position);
+			}
+		}
+
+		//sound
+
+		void RestartAllSound() {
+			foreach (var item in audios) {
+				item.gameObject.SetActive(true);
+			}
+		}
+
+		void StopAllSound() {
+			foreach (var item in audios) {
+				item.gameObject.SetActive(false);
+			}
+		}
+
+		//web
+
+		public void OpenUrl(WebType type) {
+			if (UIWeb.Show(type, RestartAllSound)) {
+				StopAllSound();
 			}
 		}
 
