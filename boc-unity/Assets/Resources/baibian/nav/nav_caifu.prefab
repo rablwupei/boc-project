@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 60758302691673174}
   - component: {fileID: 114619035876820310}
   m_Layer: 0
-  m_Name: nav_haiwai
+  m_Name: nav_caifu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,13 +65,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -9.301174, y: -4.7820344}
-      - {x: -0.98100114, y: -4.8165}
-      - {x: 8.25189, y: -4.155089}
-      - {x: 11.561232, y: -4.143472}
+    - - {x: 11.561232, y: -3.6966653}
       - {x: 11.558069, y: -7.213751}
-      - {x: -13.36581, y: -7.3237486}
-      - {x: -13.405315, y: -4.226216}
+      - {x: -13.198257, y: -7.3795996}
+      - {x: -13.181911, y: -3.69538}
 --- !u!114 &114619035876820310
 MonoBehaviour:
   m_ObjectHideFlags: 1

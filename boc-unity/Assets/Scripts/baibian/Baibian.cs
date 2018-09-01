@@ -8,9 +8,9 @@ namespace wuyy {
 
 	public enum BaibianType {
 		tongnian,
-		haiwai,
+		liuxue,
 		chengjia,
-		jiating,
+		caifu,
 		wannian,
 		none,
 	}
@@ -35,7 +35,7 @@ namespace wuyy {
 		public GameObject bgShouye {
 			get {
 				if (!_bgShouye) {
-					var prefab = Resources.Load<GameObject>("baibian/world/bgfg_shouye");
+					var prefab = Resources.Load<GameObject>("baibian/world/bgfg/bgfg_shouye");
 					_bgShouye = Instantiate(prefab, bgfg);
 				}
 				return _bgShouye;
@@ -157,7 +157,7 @@ namespace wuyy {
 			}
 			Animation anim;
 			if (!_bgfgCache.TryGetValue(type, out anim)) {
-				anim = Instantiate(Resources.Load<Animation>("baibian/world/bgfg_" + type.ToString()));
+				anim = Instantiate(Resources.Load<Animation>("baibian/world/bgfg/bgfg_" + type.ToString()));
 				anim.transform.SetParent(bgfg, false);
 				_bgfgCache[type] = anim;
 			}

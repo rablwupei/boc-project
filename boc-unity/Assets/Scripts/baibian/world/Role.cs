@@ -71,14 +71,15 @@ namespace wuyy {
 			Quaternion rot;
 			Vector3 scale;
 			_curBody = GetBody(type, out pos, out rot, out scale);
-			_curBody.transform.localPosition = Vector3.zero;
-			_curBody.transform.localRotation = Quaternion.identity;
-			_curBody.transform.localScale = Vector3.one;
-			transform.localPosition = pos;
-			transform.localRotation = rot;
-			transform.localScale = scale;
 			if (_curBody) {
+				_curBody.transform.localPosition = Vector3.zero;
+				_curBody.transform.localRotation = Quaternion.identity;
+				_curBody.transform.localScale = Vector3.one;
+				transform.localPosition = pos;
+				transform.localRotation = rot;
+				transform.localScale = scale;
 				_curBody.gameObject.SetActive(true);
+				_lastY = float.MinValue;
 			}
 		}
 

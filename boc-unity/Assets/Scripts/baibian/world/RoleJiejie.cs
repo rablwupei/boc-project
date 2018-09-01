@@ -7,7 +7,7 @@ namespace wuyy {
 	public class RoleJiejie : Role {
 
 		protected override string GetBodyPath(BaibianType type) {
-			return "baibian/world/jiejie_" + type.ToString();
+			return "baibian/world/jiejie/jiejie_" + type.ToString();
 		}
 	}
 
