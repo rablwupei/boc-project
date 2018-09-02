@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
 
 namespace wuyy {
 
@@ -10,6 +11,13 @@ namespace wuyy {
 
 		public Text day;
 		public Text time;
+		public CanvasGroup canvasGroup;
+
+		public void Show() {
+			gameObject.SetActive(true);
+			canvasGroup.alpha = 0f;
+			canvasGroup.DOFade(1f, 0.2f);
+		}
 
 		public void ButtonClick(int type) {
 			gameObject.SetActive(false);

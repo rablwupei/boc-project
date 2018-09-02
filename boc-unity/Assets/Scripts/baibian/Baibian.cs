@@ -92,11 +92,13 @@ namespace wuyy {
 			_isChanging = true;
 			var isNone = type == BaibianType.none;
 			uiGuocheng.gameObject.SetActive(!isNone);
-			uiShouye.gameObject.SetActive(isNone);
 			if (_baibianType != type || force) {
 				_baibianType = type;
 				ChangeNav(type);
 				yield return ChangeBgfg(type);
+				if (isNone) {
+					uiShouye.Show();
+				}
 			}
 			_isChanging = false;
 		}
