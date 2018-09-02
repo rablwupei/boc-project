@@ -323,7 +323,7 @@ namespace wuyy {
 				_lastKeyDown = Time.realtimeSinceStartup;
 			} else {
 				if (Time.realtimeSinceStartup - _lastKeyDown > 3 * 60f &&
-					!uiHuanying.gameObject.activeSelf) {
+					!uiHuanying.gameObject.activeSelf && !_isChanging) {
 					Reset();
 					uiHuanying.Open();
 				}

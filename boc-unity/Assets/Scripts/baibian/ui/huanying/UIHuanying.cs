@@ -11,7 +11,7 @@ namespace wuyy {
 		public List<DOTweenAnimation> tweenAnims;
 
 		public void Close() {
-			Baibian.instance.uiShouye.gameObject.SetActive(true);
+			Baibian.instance.uiShouye.ReadyShow();
 			Baibian.instance.bgShouye.gameObject.SetActive(true);
 			DOTweenAnimation anim = null;
 			foreach (var item in tweenAnims) {
@@ -21,6 +21,7 @@ namespace wuyy {
 			if (anim) {
 				anim.tween.OnComplete(delegate {
 					gameObject.SetActive(false);
+					Baibian.instance.uiShouye.Show();
 				});
 			}
 		}

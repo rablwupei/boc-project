@@ -13,6 +13,10 @@ namespace wuyy {
 		public Text time;
 		public CanvasGroup canvasGroup;
 
+		public void ReadyShow() {
+			canvasGroup.alpha = 0f;
+		}
+
 		public void Show() {
 			gameObject.SetActive(true);
 			canvasGroup.alpha = 0f;
