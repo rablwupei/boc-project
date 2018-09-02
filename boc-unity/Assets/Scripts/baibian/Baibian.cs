@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
+using DG.Tweening;
 
 namespace wuyy {
 
@@ -80,15 +81,24 @@ namespace wuyy {
 		}
 
 		public void Change(BaibianType type, bool force = false) {
+			if (!_isChanging) {
+				StartCoroutine(DoChange(type, force));
+			}
+		}
+
+		bool _isChanging;
+
+		IEnumerator DoChange(BaibianType type, bool force = false) {
+			_isChanging = true;
 			var isNone = type == BaibianType.none;
 			uiGuocheng.gameObject.SetActive(!isNone);
 			uiShouye.gameObject.SetActive(isNone);
 			if (_baibianType != type || force) {
 				_baibianType = type;
 				ChangeNav(type);
-				ChangeBgfg(type);
-				ChangeRoleBody(type);
+				yield return ChangeBgfg(type);
 			}
+			_isChanging = false;
 		}
 
 		//camera
@@ -108,33 +118,67 @@ namespace wuyy {
 
 		RoleDidi _roleDidi;
 		RoleJiejie _roleJiejie;
+		const float FADE_TIME = 0.2f;
 
-		public void ChangeRoleBody(BaibianType type) {
+		public IEnumerator HideOldRoleBody(BaibianType type) {
+			if (_roleDidi == null) {
+				yield break;
+			}
+
 			if (type == BaibianType.none) {
-				if (_roleDidi != null) {
-					_roleDidi.gameObject.SetActive(false);
-				}
-				if (_roleJiejie != null) {
-					_roleJiejie.gameObject.SetActive(false);
-				}
 				cameraFollow.follow1 = null;
 				cameraFollow.follow2 = null;
 				StopSound();
-				return;
 			}
+
+			var tween1 = DOTween.ToAlpha(()=> _roleDidi.color, x=> _roleDidi.color = x, 0, FADE_TIME);
+			var tween2 = DOTween.ToAlpha(()=> _roleJiejie.color, x=> _roleJiejie.color = x, 0, FADE_TIME);
+			while (tween1.IsPlaying() || tween2.IsPlaying()) {
+				yield return null;
+			}
+			_roleDidi.HideOldRoleBody(type);
+			_roleDidi.gameObject.SetActive(false);
+			_roleJiejie.HideOldRoleBody(type);
+			_roleJiejie.gameObject.SetActive(false);
+		}
+
+		public IEnumerator ReadyNewRoleBody(BaibianType type) {
+			if (type == BaibianType.none) {
+				yield break;
+			}
+
 			if (_roleDidi == null) {
 				_roleDidi = Role.CreateDidi();
 			}
-			_roleDidi.agent.map = _curNav;
-			_roleDidi.ChangeRoleBody(type);
-			_roleDidi.gameObject.SetActive(true);
 			if (_roleJiejie == null) {
 				_roleJiejie = Role.CreateJiejie();
 			}
-			_roleJiejie.ChangeRoleBody(type);
+
+			_roleDidi.agent.map = _curNav;
+			_roleDidi.ShowNewRoleBody(type);
+			_roleDidi.gameObject.SetActive(true);
+
+			_roleJiejie.ShowNewRoleBody(type);
 			_roleJiejie.gameObject.SetActive(true);
+
 			cameraFollow.follow1 = _roleDidi.cameraFollow;
 			cameraFollow.follow2 = _roleJiejie.cameraFollow;
+
+			_roleDidi.alpha = 0f;
+			_roleJiejie.alpha = 0f;
+		}
+
+		public IEnumerator ShowNewRoleBody(BaibianType type) {
+			if (type == BaibianType.none) {
+				yield break;
+			}
+
+			var tween1 = DOTween.ToAlpha(()=> _roleDidi.color, x=> _roleDidi.color = x, 1, FADE_TIME);
+			var tween2 = DOTween.ToAlpha(()=> _roleJiejie.color, x=> _roleJiejie.color = x, 1, FADE_TIME);
+			while (tween1.IsPlaying() || tween2.IsPlaying()) {
+				yield return null;
+			}
+
 			foreach (var item in uiGuocheng.menus) {
 				if (item.type == type) {
 					PlaySound(item.audioClip);
@@ -186,16 +230,30 @@ namespace wuyy {
 		}
 
 		Animation _curBgfg;
-		public void ChangeBgfg(BaibianType type) {
+		public IEnumerator ChangeBgfg(BaibianType type) {
+			yield return HideOldRoleBody(type);
 			if (_curBgfg) {
+				_curBgfg["chuxian"].speed = -1f;
+				_curBgfg["chuxian"].normalizedTime = 1f;
+				_curBgfg.Play("chuxian");
+				while (_curBgfg.isPlaying) {
+					yield return null;
+				}
 				_curBgfg.gameObject.SetActive(false);
 			}
+			yield return ReadyNewRoleBody(type);
 			_curBgfg = GetBgfg(type);
 			if (_curBgfg) {
 				_curBgfg.gameObject.SetActive(true);
+				_curBgfg["chuxian"].normalizedTime = 0f;
+				_curBgfg["chuxian"].speed = 1;
 				_curBgfg.Play("chuxian");
-				_curBgfg.PlayQueued("stand");
+				while (_curBgfg.isPlaying) {
+					yield return null;
+				}
+				_curBgfg.Play("stand");
 			}
+			yield return ShowNewRoleBody(type);
 		}
 
 		// touch
@@ -210,6 +268,9 @@ namespace wuyy {
 		float _pressTime;
 
 		public void UITouchPress(BaseEventData data) {
+			if (_isChanging) {
+				return;
+			}
 			var eventData = (PointerEventData)data;
 			var screenPos = eventData.position;
 			var ray = mainCamera.ScreenPointToRay(screenPos);
@@ -218,14 +279,15 @@ namespace wuyy {
 				var role = hit.transform.GetComponentInParent<Role>();
 				if (role != null) {
 					if (role is RoleJiejie) {
+						_roleDidi.StopMove(true);
 						var viewPos = mainCamera.WorldToViewportPoint(hit.transform.position);
 						uiGuocheng.OpenMenu(WorldToCanvas(canvasTrans, viewPos), _baibianType);
 					} else {
-						//PlayAnim
+						_roleDidi.StopMove(false);
+						role.Play(Anim.Dianji);
 					}
 					_pressRole = true;
 					_pressEvent = null;
-					_roleDidi.StopMove();
 				}
 			} else {
 				if (_baibianType != BaibianType.wannian) {
@@ -238,7 +300,7 @@ namespace wuyy {
 		}
 
 		public void UITouchUp(BaseEventData data) {
-			if (!_pressRole) {
+			if (_pressEvent != null && !_pressRole) {
 				if (Time.realtimeSinceStartup - _pressTime < 0.2f) {
 					_roleDidi.StartMove(_pressEvent.position);
 				} else {

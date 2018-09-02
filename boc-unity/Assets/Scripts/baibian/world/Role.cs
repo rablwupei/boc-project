@@ -60,13 +60,36 @@ namespace wuyy {
 			return ins;
 		}
 
-		public void ChangeRoleBody(BaibianType type) {
+		public void HideOldRoleBody(BaibianType type) {
 			if (_curBody) {
-				_curBody.gameObject.SetActive(false);
 				if (agent) {
 					agent.Stop();
 				}
+				_curBody.gameObject.SetActive(false);
+				_curBody = null;
 			}
+		}
+
+
+		public float alpha {
+			set {
+				_curBody.alpha = value;
+			}
+			get {
+				return _curBody.alpha;
+			}
+		}
+
+		public Color color {
+			set {
+				_curBody.color = value;
+			}
+			get {
+				return _curBody.color;
+			}
+		}
+
+		public void ShowNewRoleBody(BaibianType type) {
 			Vector3 pos;
 			Quaternion rot;
 			Vector3 scale;
@@ -124,9 +147,11 @@ namespace wuyy {
 			}
 		}
 
-		public void StopMove() {
+		public void StopMove(bool anim = true) {
 			agent.Stop();
-			Play(Anim.Stand);
+			if (anim) {
+				Play(Anim.Stand);
+			}
 		}
 
 		void OnMoveFinish(bool value) {

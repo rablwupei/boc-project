@@ -41,7 +41,9 @@ namespace wuyy {
 		}
 
 		void OnDisable() {
-			Baibian.instance.StopSound();
+			if (Baibian.instance) {
+				Baibian.instance.StopSound();
+			}
 		}
 
 		public void OpenMenu(Vector3 pos, BaibianType type) {
