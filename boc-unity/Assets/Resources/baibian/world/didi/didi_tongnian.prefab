@@ -624,7 +624,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4567250260149218}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.8960001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.795166}
 --- !u!4 &4236632341011040
 Transform:
   m_ObjectHideFlags: 1
@@ -663,7 +663,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4567250260149218}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.3360002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.3618579}
 --- !u!4 &4286566016484696
 Transform:
   m_ObjectHideFlags: 1
@@ -676,7 +676,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4567250260149218}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4351922975346546
 Transform:
   m_ObjectHideFlags: 1
@@ -730,7 +730,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4021079214194382}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.86802197}
 --- !u!4 &4473795467050878
 Transform:
   m_ObjectHideFlags: 1
@@ -769,7 +769,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4567250260149218}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -19.294601}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.39910555}
 --- !u!4 &4541870275675952
 Transform:
   m_ObjectHideFlags: 1
@@ -795,7 +795,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4585214368191218}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.25027037}
 --- !u!4 &4567250260149218
 Transform:
   m_ObjectHideFlags: 1
@@ -881,7 +881,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4021079214194382}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.0532436}
 --- !u!4 &4705272383177570
 Transform:
   m_ObjectHideFlags: 1
@@ -935,7 +935,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4567250260149218}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.6423497}
 --- !u!4 &4908089675618936
 Transform:
   m_ObjectHideFlags: 1
@@ -977,7 +977,6 @@ Animation:
   - {fileID: 7400000, guid: 4202c68b8ba04434282614200b62290a, type: 2}
   - {fileID: 7400000, guid: 5a9722694a19f4d429ba312585760c55, type: 2}
   - {fileID: 7400000, guid: 31f0bdb576d3ea1428574ab7fc9ca31d, type: 2}
-  - {fileID: 7400000, guid: 948fb324a34742740a8037285351d759, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
