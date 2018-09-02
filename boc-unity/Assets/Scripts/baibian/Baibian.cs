@@ -282,11 +282,13 @@ namespace wuyy {
 
 		public void PlaySound(AudioClip clip) {
 			audioSound.Stop();
-			audioSound.PlayOneShot(clip);
+			//audioSound.PlayOneShot(clip);
 		}
 
 		public void StopSound() {
-			audioSound.Stop();
+			if (audioSound) {
+				audioSound.Stop();
+			}
 		}
 
 		//web
