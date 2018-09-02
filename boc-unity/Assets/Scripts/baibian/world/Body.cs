@@ -44,7 +44,7 @@ namespace wuyy {
 		bool _cache;
 
 		void Cache() {
-			_renders = GetComponentsInChildren<SpriteRenderer>();
+			_renders = GetComponentsInChildren<SpriteRenderer>(true);
 			_rendersSort = new int[_renders.Length];
 			for (int i = 0; i < _renders.Length; i++) {
 				_rendersSort[i] = _renders[i].sortingOrder;
