@@ -12,6 +12,12 @@ namespace wuyy {
 
 		public GameObject yinliangGo;
 
+		public UIGuochengLeftPanelClick leftPanel;
+
+		public void MoveLeftPanel() {
+			leftPanel.OnBackClick();
+		}
+
 		[System.Serializable]
 		public class Menu {
 			public BaibianType type;
@@ -29,9 +35,11 @@ namespace wuyy {
 
 		void Start() {
 			foreach (var item in menuItems) {
-				item.button.onClick.AddListener(delegate {
-					CaidanClick(item.type);
-				});
+				if (item.button) {
+					item.button.onClick.AddListener(delegate {
+						CaidanClick(item.type);
+					});
+				}
 			}
 		}
 
