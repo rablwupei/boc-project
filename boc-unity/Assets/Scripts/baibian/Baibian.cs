@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 using DG.Tweening;
+using UnityEngine.UI;
 
 namespace wuyy {
 
@@ -322,6 +323,7 @@ namespace wuyy {
 			if (_pressEvent != null) {
 				_roleDidi.StartMove(_pressEvent.position);
 			}
+
 			if (Input.anyKeyDown) {
 				_lastKeyDown = Time.realtimeSinceStartup;
 			} else {
@@ -356,6 +358,19 @@ namespace wuyy {
 			if (audioSound) {
 				audioSound.Stop();
 			}
+		}
+
+		// drag
+
+		public List<List<Image>> typeButtons;
+
+		public void TypeButtonDown(BaseEventData data) {
+			var eventData = (PointerEventData)data;
+			Debug.Log(eventData.selectedObject);
+		}
+
+		public void TypeButtonUp(BaseEventData data) {
+			
 		}
 
 		//web
