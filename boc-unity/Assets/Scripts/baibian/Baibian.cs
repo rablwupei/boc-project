@@ -24,6 +24,8 @@ namespace wuyy {
 		public Canvas canvas;
 		public RectTransform canvasTrans;
 		public CameraFollow cameraFollow;
+		public Camera shouyeCamera;
+		public Camera uiCamera;
 		public Transform bgfg;
 		public Transform roles;
 		public Transform nav;
@@ -62,6 +64,7 @@ namespace wuyy {
 
 		void Start() {
 			AudioListener.volume = PlayerPrefs.GetFloat(Key_volume, 1f);
+			InitTypeButtons();
 
 			uiHuanying.gameObject.SetActive(true);
 			Reset();
@@ -294,6 +297,8 @@ namespace wuyy {
 					}
 					_pressRole = true;
 					_pressEvent = null;
+				} else {
+					OpenUrl(WebType.专家连线);
 				}
 			} else {
 				if (_baibianType != BaibianType.wannian) {
@@ -306,7 +311,7 @@ namespace wuyy {
 		}
 
 		public void UITouchUp(BaseEventData data) {
-			if (_pressEvent != null && !_pressRole) {
+			if (_pressEvent != null && _pressEvent == data && !_pressRole) {
 				if (Time.realtimeSinceStartup - _pressTime < 0.2f) {
 					_roleDidi.StartMove(_pressEvent.position);
 				} else {
@@ -333,6 +338,8 @@ namespace wuyy {
 					uiHuanying.Open();
 				}
 			}
+
+			UpdateTypeButton();
 		}
 
 		//sound
@@ -362,15 +369,75 @@ namespace wuyy {
 
 		// drag
 
-		public List<List<Image>> typeButtons;
+		[System.Serializable]
+		public class TypeButton {
+			public List<RectTransform> eventTrans;
+		}
+		public List<TypeButton> typeButtons;
 
-		public void TypeButtonDown(BaseEventData data) {
-			var eventData = (PointerEventData)data;
-			Debug.Log(eventData.selectedObject);
+		void InitTypeButtons() {
+			for (int i = 0; i < typeButtons.Count; i++) {
+				var eventTrans = typeButtons[i].eventTrans;
+				for (int j = 0; j < eventTrans.Count; j++) {
+					var type = (BaibianType)j;
+					var trans = eventTrans[j];
+					EventUtil.AddTriggerListener(trans, EventTriggerType.PointerDown, delegate(BaseEventData data){
+						TypeButtonDown(data, type, trans);
+					});
+					EventUtil.AddTriggerListener(eventTrans[j], EventTriggerType.PointerUp, TypeButtonUp);
+				}
+			}
+		}
+
+		public void TypeButtonDown(BaseEventData data, BaibianType type, RectTransform trans) {
+			if (!_isChanging) {
+				_typeButtonPointer = (PointerEventData)data;
+				_typeButtonSelect = trans;
+				_typeButtonType = type;
+				_typeButtonStartPosition = trans.position;
+			}
 		}
 
 		public void TypeButtonUp(BaseEventData data) {
-			
+			if (_typeButtonPointer == data) {
+				var success = false;
+				if (_typeButtonType != _baibianType) {
+					var screenPos = _typeButtonPointer.position;
+					if (_baibianType == BaibianType.none) {
+						var ray = shouyeCamera.ScreenPointToRay(screenPos);
+						var hit = Physics2D.GetRayIntersection(ray);
+						if (hit.collider != null) {
+							success = true;
+							uiShouye.Hide();
+						}
+					} else {
+						var ray = mainCamera.ScreenPointToRay(screenPos);
+						var hit = Physics2D.GetRayIntersection(ray);
+						if (hit.collider != null && hit.transform.GetComponent<RoleDidi>() != null) {
+							success = true;
+							uiGuocheng.MoveLeftPanel();
+						}
+					}
+				}
+				if (success) {
+					Change(_typeButtonType);
+					_typeButtonSelect.position = _typeButtonStartPosition;
+				} else {
+					_typeButtonSelect.DOMove(_typeButtonStartPosition, 0.2f);
+				}
+				_typeButtonPointer = null;
+			}
+		}
+
+		PointerEventData _typeButtonPointer;
+		RectTransform _typeButtonSelect;
+		BaibianType _typeButtonType;
+		Vector2 _typeButtonStartPosition;
+
+		void UpdateTypeButton() {
+			if (_typeButtonPointer != null) {
+				_typeButtonSelect.position = uiCamera.ScreenToWorldPoint(_typeButtonPointer.position);
+			}
 		}
 
 		//web

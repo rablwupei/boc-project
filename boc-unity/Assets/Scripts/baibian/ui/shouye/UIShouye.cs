@@ -23,6 +23,10 @@ namespace wuyy {
 			canvasGroup.DOFade(1f, 0.2f);
 		}
 
+		public void Hide() {
+			gameObject.SetActive(false);
+		}
+
 		public void ButtonClick(int type) {
 			gameObject.SetActive(false);
 			Baibian.instance.Change(type, true);
