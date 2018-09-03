@@ -180,13 +180,6 @@ namespace wuyy {
 			while (tween1.IsPlaying() || tween2.IsPlaying()) {
 				yield return null;
 			}
-
-			foreach (var item in uiGuocheng.menus) {
-				if (item.type == type) {
-					PlaySound(item.audioClip);
-					break;
-				}
-			}
 		}
 
 
@@ -233,6 +226,7 @@ namespace wuyy {
 
 		Animation _curBgfg;
 		public IEnumerator ChangeBgfg(BaibianType type) {
+			StopSound();
 			yield return HideOldRoleBody(type);
 			if (_curBgfg) {
 				_curBgfg["chuxian"].speed = -1f;
@@ -256,6 +250,15 @@ namespace wuyy {
 				_curBgfg.Play("stand");
 			}
 			yield return ShowNewRoleBody(type);
+			if (type != BaibianType.none) {
+				uiDuihuakuang.Show(type);
+				foreach (var item in uiGuocheng.menus) {
+					if (item.type == type) {
+						PlaySound(item.audioClip);
+						break;
+					}
+				}
+			}
 		}
 
 		// touch
@@ -346,7 +349,7 @@ namespace wuyy {
 
 		public void PlaySound(AudioClip clip) {
 			audioSound.Stop();
-			//audioSound.PlayOneShot(clip);
+			audioSound.PlayOneShot(clip);
 		}
 
 		public void StopSound() {
