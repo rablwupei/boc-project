@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 4500593187716934}
   - component: {fileID: 61034119649154264}
   - component: {fileID: 111545702569721038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hudong_shouji
   m_TagString: Untagged
   m_Icon: {fileID: 0}

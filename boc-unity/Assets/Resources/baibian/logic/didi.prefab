@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114127896684707204}
   - component: {fileID: 114506731918851868}
   - component: {fileID: 61706779749052042}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: didi
   m_TagString: Untagged
   m_Icon: {fileID: 0}

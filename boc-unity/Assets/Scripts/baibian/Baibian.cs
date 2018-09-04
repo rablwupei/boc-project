@@ -277,13 +277,13 @@ namespace wuyy {
 		float _pressTime;
 
 		public void UITouchPress(BaseEventData data) {
-			if (_isChanging) {
+			if (_isChanging || _pressEvent != null) {
 				return;
 			}
 			var eventData = (PointerEventData)data;
 			var screenPos = eventData.position;
 			var ray = mainCamera.ScreenPointToRay(screenPos);
-			var hit = Physics2D.GetRayIntersection(ray);
+			var hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, Const.Mask.Didi | Const.Mask.Jiejie | Const.Mask.Shouji);
 			if (hit.collider != null) {
 				var role = hit.transform.GetComponentInParent<Role>();
 				if (role != null) {
@@ -390,7 +390,7 @@ namespace wuyy {
 		}
 
 		public void TypeButtonDown(BaseEventData data, BaibianType type, RectTransform trans) {
-			if (!_isChanging) {
+			if (!_isChanging && _typeButtonPointer == null) {
 				_typeButtonPointer = (PointerEventData)data;
 				_typeButtonSelect = trans;
 				_typeButtonType = type;
@@ -405,7 +405,7 @@ namespace wuyy {
 					var screenPos = _typeButtonPointer.position;
 					if (_baibianType == BaibianType.none) {
 						var ray = shouyeCamera.ScreenPointToRay(screenPos);
-						var hit = Physics2D.GetRayIntersection(ray);
+						var hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, Const.Mask.BgShouye | Const.Mask.Didi);
 						if (hit.collider != null) {
 							success = true;
 							uiShouye.Hide();

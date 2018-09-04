@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 4245680230397656}
   - component: {fileID: 61336106211731010}
   - component: {fileID: 111699447590253070}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: guanggao
   m_TagString: Untagged
   m_Icon: {fileID: 0}

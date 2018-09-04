@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4023967874035368}
   - component: {fileID: 114754266063869302}
   - component: {fileID: 61077285036320740}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: jiejie
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -32,7 +32,7 @@ namespace wuyy {
 			gameObject.SetActive(true);
 			if (menuStrs.ContainsKey(type)) {
 				text.text = "";
-				text.fontSize = 53;
+				text.fontSize = 36;
 				var str = menuStrs[type];
 				_textTweener = text.DOText(str, 3f);
 				_textTweener.SetEase(Ease.Linear);
@@ -48,9 +48,9 @@ namespace wuyy {
 			gameObject.SetActive(true);
 			if (typeStr.ContainsKey(baibianType)) {
 				text.text = "";
-				text.fontSize = 40;
+				text.fontSize = 36;
 				var str = typeStr[baibianType];
-				_textTweener = text.DOText(str, str.Length * 12f / typeStr[BaibianType.tongnian].Length);
+				_textTweener = text.DOText(str, str.Length * 5f / typeStr[BaibianType.tongnian].Length);
 				_textTweener.SetEase(Ease.Linear);
 			} else {
 				text.text = "";

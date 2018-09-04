@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 4114543190815816}
   - component: {fileID: 61267635945862566}
   - component: {fileID: 111734927803490154}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hudong_diannao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
