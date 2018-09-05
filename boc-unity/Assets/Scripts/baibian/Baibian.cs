@@ -40,13 +40,25 @@ namespace wuyy {
 		public UIWeb prefabUIWeb;
 
 		GameObject _bgShouye;
+		GameObject _shouyeJiantou;
 		public GameObject bgShouye {
 			get {
 				if (!_bgShouye) {
 					var prefab = Resources.Load<GameObject>("baibian/world/bgfg/bgfg_shouye");
 					_bgShouye = Instantiate(prefab, bgfg);
+					var trans = _bgShouye.transform.Find("jiantou");
+					if (trans) {
+						_shouyeJiantou = trans.gameObject;
+					}
 				}
 				return _bgShouye;
+			}
+		}
+
+		public void ShowShouye() {
+			bgShouye.SetActive(true);
+			if (_shouyeJiantou) {
+				_shouyeJiantou.SetActive(false);
 			}
 		}
 
@@ -63,6 +75,9 @@ namespace wuyy {
 		public const string Key_volume = "baibian_volume";
 
 		void Start() {
+			Screen.fullScreen = true;
+			Cursor.visible = false;
+			Input.multiTouchEnabled = false;
 			AudioListener.volume = PlayerPrefs.GetFloat(Key_volume, 1f);
 			InitTypeButtons();
 
@@ -339,6 +354,10 @@ namespace wuyy {
 				}
 			}
 
+			if (Input.GetKeyDown(KeyCode.Tab)) {
+				Cursor.visible = !Cursor.visible;
+			}
+
 			UpdateTypeButton();
 		}
 
@@ -381,20 +400,24 @@ namespace wuyy {
 				for (int j = 0; j < eventTrans.Count; j++) {
 					var type = (BaibianType)j;
 					var trans = eventTrans[j];
+					var startPos = trans.localPosition;
 					EventUtil.AddTriggerListener(trans, EventTriggerType.PointerDown, delegate(BaseEventData data){
-						TypeButtonDown(data, type, trans);
+						TypeButtonDown(data, type, trans, startPos);
 					});
 					EventUtil.AddTriggerListener(eventTrans[j], EventTriggerType.PointerUp, TypeButtonUp);
 				}
 			}
 		}
 
-		public void TypeButtonDown(BaseEventData data, BaibianType type, RectTransform trans) {
+		public void TypeButtonDown(BaseEventData data, BaibianType type, RectTransform trans, Vector3 startLocalPos) {
 			if (!_isChanging && _typeButtonPointer == null) {
 				_typeButtonPointer = (PointerEventData)data;
 				_typeButtonSelect = trans;
 				_typeButtonType = type;
-				_typeButtonStartPosition = trans.position;
+				_typeButtonStartPosition = trans.parent.TransformPoint(startLocalPos);
+				if (_shouyeJiantou) {
+					_shouyeJiantou.SetActive(true);
+				}
 			}
 		}
 
@@ -426,6 +449,9 @@ namespace wuyy {
 					_typeButtonSelect.DOMove(_typeButtonStartPosition, 0.2f);
 				}
 				_typeButtonPointer = null;
+				if (_shouyeJiantou) {
+					_shouyeJiantou.SetActive(false);
+				}
 			}
 		}
 
