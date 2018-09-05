@@ -11,9 +11,7 @@ namespace wuyy.fk {
 		public Image fg;
 
 		public void FgClick() {
-			fg.DOFade(0f, 1f).OnComplete(delegate {
-				Fengkong.instance.Next();	
-			});
+			fg.DOFade(0f, 1f).OnComplete(Next);
 		}
 
 	}

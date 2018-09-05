@@ -10,6 +10,10 @@ namespace wuyy.fk {
 			
 		}
 
+		public void Next() {
+			Fengkong.instance.Next();
+		}
+
 	}
 
 

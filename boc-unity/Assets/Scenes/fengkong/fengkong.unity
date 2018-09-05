@@ -496,7 +496,7 @@ MonoBehaviour:
   uiRoot: {fileID: 2108984636}
   uis:
   - {fileID: 114133079879571192, guid: f74d6edd2a4b04b28bfd47a68af4e580, type: 2}
-  - {fileID: 114648197991826136, guid: bd87274427bf041219191b93a5bc7656, type: 2}
+  - {fileID: 114625012253446404, guid: bd87274427bf041219191b93a5bc7656, type: 2}
 --- !u!4 &1053469912
 Transform:
   m_ObjectHideFlags: 0
