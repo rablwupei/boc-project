@@ -38,6 +38,7 @@ namespace wuyy.fk {
 			_ui = Instantiate(uis[_index]);
 			_ui.transform.SetParent(uiRoot, false);
 			_ui.Init();
+			_index = ++_index % uis.Count;
 		}
 
 	}
