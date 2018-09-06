@@ -19,6 +19,8 @@ namespace SuspensionApp {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.TransparencyKey = Color.Turquoise;
+            this.BackColor = Color.Turquoise;
 
             InitializeComponent();
 

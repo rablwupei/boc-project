@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/fengkong/fengkong.unity
-    guid: 1a6bd28f7d6ee4da4898f02025f6e441
-  - enabled: 1
     path: Assets/Scenes/baibian/baibian.unity
     guid: b588a98ba240446b4b03cef5eef888c3
+  - enabled: 0
+    path: Assets/Scenes/fengkong/fengkong.unity
+    guid: 1a6bd28f7d6ee4da4898f02025f6e441
   - enabled: 0
     path: Assets/ZFBrowser/wp/demo.unity
     guid: ab86ae1c6f033421f89299aeb4591878

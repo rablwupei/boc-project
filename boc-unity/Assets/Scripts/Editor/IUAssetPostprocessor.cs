@@ -23,9 +23,9 @@ namespace iu {
 			var textureImporter = assetImporter as TextureImporter;
 			textureImporter.mipmapEnabled = false;
 
-			var setting = textureImporter.GetDefaultPlatformTextureSettings();
-			setting.textureCompression = TextureImporterCompression.Uncompressed;
-			textureImporter.SetPlatformTextureSettings(setting);
+			//var setting = textureImporter.GetDefaultPlatformTextureSettings();
+			//setting.textureCompression = TextureImporterCompression.Uncompressed;
+			//textureImporter.SetPlatformTextureSettings(setting);
 		}
 
 	}

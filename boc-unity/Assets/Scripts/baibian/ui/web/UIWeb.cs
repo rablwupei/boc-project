@@ -34,16 +34,30 @@ namespace wuyy {
 				break;
 			}
 			var value = false;
-			#if OPEN_WEB
+#if OPEN_WEB
 			if (!string.IsNullOrEmpty(url)) {
 				var uiWeb = Create();
 				uiWeb._closeCallback = closeCallback;
 				uiWeb._Open(url);
 				value = true;
 			}
-			#endif
-			return value;
+#else
+            value = true;
+            System.Diagnostics.Process.Start("chrome.exe", "--kiosk " + url);
+            System.Diagnostics.Process.Start(GetRootPath() + "/chrome_close.exe");
+#endif
+            return value;
 		}
+
+        static string GetRootPath() {
+            var path = Application.dataPath;
+            if (Application.platform == RuntimePlatform.OSXPlayer) {
+                path += "/../..";
+            } else if (Application.platform == RuntimePlatform.WindowsPlayer) {
+                path += "/..";
+            }
+            return path;
+        }
 
 		public void Hide() {
 			if (_closeCallback != null) {
