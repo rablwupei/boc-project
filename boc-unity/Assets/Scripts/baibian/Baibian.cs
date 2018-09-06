@@ -466,13 +466,30 @@ namespace wuyy {
 			}
 		}
 
-		//web
+        //web
 
-		public void OpenUrl(WebType type) {
-			if (UIWeb.Show(type, RestartAllSound)) {
-				StopAllSound();
-			}
-		}
+        private void OnApplicationFocus(bool focus) {
+            if (focus) {
+                RestartAllSound();
+            } else {
+                StopAllSound();
+            }
+        }
+
+        private void OnApplicationPause(bool pause) {
+            if (pause) {
+                StopAllSound();
+            } else {
+                RestartAllSound();
+            }
+        }
+
+        public void OpenUrl(WebType type) {
+            //if (UIWeb.Show(type, RestartAllSound)) {
+            //	StopAllSound();
+            //}
+            UIWeb.Show(type);
+        }
 
 
 	}

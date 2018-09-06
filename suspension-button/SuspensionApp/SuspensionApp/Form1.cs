@@ -71,6 +71,7 @@ namespace SuspensionApp {
         }
 
         static void CloseAllChromeBrowsers() {
+#if true
             foreach (Process process in Process.GetProcessesByName("chrome")) {
                 if (process.MainWindowHandle == IntPtr.Zero) // some have no UI
                     continue;
@@ -79,6 +80,11 @@ namespace SuspensionApp {
                     ((WindowPattern)element.GetCurrentPattern(WindowPattern.Pattern)).Close();
                 }
             }
+#else
+            foreach (Process p in Process.GetProcessesByName("chrome")) {
+                p.Kill();
+            }
+#endif
         }
     }
 }

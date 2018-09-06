@@ -23,7 +23,7 @@ namespace wuyy {
 			return obj;
 		}
 
-		public static bool Show(WebType type, Action closeCallback) {
+		public static bool Show(WebType type, Action closeCallback = null) {
 			string url = null;
 			switch (type) {
 			case WebType.中行:
