@@ -54,12 +54,22 @@ namespace wuyy {
 			}
 		}
 
-		public void OpenMenu(Vector3 pos, BaibianType type) {
+		public void OnCloseMenu() {
+			if (_closeCallback != null) {
+				_closeCallback();
+				_closeCallback = null;
+			}
+		}
+
+		System.Action _closeCallback;
+
+		public void OpenMenu(Vector3 pos, BaibianType type, System.Action closeCallback) {
 			foreach (var item in menus) {
 				if (item.type == type) {
 					uiOptionRoot.SetActive(true);
 					uiOptionPanel.anchoredPosition = pos;
 					item.go.SetActive(true);
+					_closeCallback = closeCallback;
 				} else {
 					item.go.SetActive(false);
 				}
@@ -82,8 +92,13 @@ namespace wuyy {
 			uiOptionRoot.SetActive(false);
 			if (type == MenuItemType.专家连线) {
 				Baibian.instance.OpenUrl(WebType.专家连线);
+				if (_closeCallback != null) {
+					_closeCallback();
+					_closeCallback = null;
+				}
 			} else if (type != MenuItemType.Empty) {
-				Baibian.instance.uiDuihuakuang.Show(Baibian.instance.baibianType, type);
+				Baibian.instance.uiDuihuakuang.Show(Baibian.instance.baibianType, type, _closeCallback);
+				_closeCallback = null;
 			}
 		}
 

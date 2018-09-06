@@ -13,6 +13,7 @@ namespace wuyy {
 	public class Body : MonoBehaviour {
 
 		public Transform cameraFollow;
+		public Transform tipTrans;
 
 		Animation _anim;
 		Animation anim {

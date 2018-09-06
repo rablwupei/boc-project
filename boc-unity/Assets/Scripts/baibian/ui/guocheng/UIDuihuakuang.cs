@@ -22,10 +22,17 @@ namespace wuyy {
 			} else {
 				gameObject.SetActive(false);
 				_textTweener = null;
+				if (_closeCallback != null) {
+					_closeCallback();
+					_closeCallback = null;
+				}
 			}
 		}
 
-		public void Show(BaibianType baibianType, MenuItemType type) {
+		System.Action _closeCallback;
+
+		public void Show(BaibianType baibianType, MenuItemType type, System.Action closeCallback) {
+			_closeCallback = closeCallback;
 			int value = (int)baibianType;
 			gege.SetActive(value % 2 != 0);
 			jiejie.SetActive(value % 2 == 0);
@@ -41,7 +48,8 @@ namespace wuyy {
 			}
 		}
 
-		public void Show(BaibianType baibianType) {
+		public void Show(BaibianType baibianType, System.Action closeCallback) {
+			_closeCallback = closeCallback;
 			int value = (int)baibianType;
 			gege.SetActive(value % 2 != 0);
 			jiejie.SetActive(value % 2 == 0);

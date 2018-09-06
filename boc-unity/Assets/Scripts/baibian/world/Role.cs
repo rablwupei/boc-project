@@ -33,7 +33,8 @@ namespace wuyy {
 		protected abstract string GetBodyPath(BaibianType type);
 
 		Body _curBody;
-		public Transform cameraFollow { get { return _curBody.cameraFollow; } }
+		public Transform cameraFollow { get { return _curBody ? _curBody.cameraFollow : null; } }
+		public Transform tipTrans { get { return _curBody ? _curBody.tipTrans : null; } }
 
 		Dictionary<BaibianType, Body> _navCache = new Dictionary<BaibianType, Body>(DictionaryBaibianType.Default);
 		Dictionary<BaibianType, Vector3> _posCache = new Dictionary<BaibianType, Vector3>(DictionaryBaibianType.Default);

@@ -270,7 +270,8 @@ namespace wuyy {
 			}
 			yield return ShowNewRoleBody(type);
 			if (type != BaibianType.none) {
-				uiDuihuakuang.Show(type);
+				HideJiejieTip();
+				uiDuihuakuang.Show(type, ShowJiejieTip);
 				foreach (var item in uiGuocheng.menus) {
 					if (item.type == type) {
 						PlaySound(item.audioClip);
@@ -291,6 +292,18 @@ namespace wuyy {
 		bool _pressRole;
 		float _pressTime;
 
+		public void ShowJiejieTip() {
+			if (_roleJiejie && _roleJiejie.tipTrans) {
+				_roleJiejie.tipTrans.gameObject.SetActive(true);
+			}
+		}
+
+		public void HideJiejieTip() {
+			if (_roleJiejie && _roleJiejie.tipTrans) {
+				_roleJiejie.tipTrans.gameObject.SetActive(false);
+			}
+		}
+
 		public void UITouchPress(BaseEventData data) {
 			if (_isChanging || _pressEvent != null) {
 				return;
@@ -300,15 +313,16 @@ namespace wuyy {
 			var ray = mainCamera.ScreenPointToRay(screenPos);
 			var hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, Const.Mask.Didi | Const.Mask.Jiejie | Const.Mask.Shouji);
 			if (hit.collider != null) {
-				var role = hit.transform.GetComponentInParent<Role>();
-				if (role != null) {
-					if (role is RoleJiejie) {
+				var layer = hit.transform.gameObject.layer;
+				if (layer == Const.Layer.Jiejie || layer == Const.Layer.Didi) {
+					if (layer == Const.Layer.Jiejie) {
 						_roleDidi.StopMove(true);
 						var viewPos = mainCamera.WorldToViewportPoint(hit.transform.position);
-						uiGuocheng.OpenMenu(WorldToCanvas(canvasTrans, viewPos), _baibianType);
+						uiGuocheng.OpenMenu(WorldToCanvas(canvasTrans, viewPos), _baibianType, ShowJiejieTip);
+						HideJiejieTip();
 					} else {
 						_roleDidi.StopMove(false);
-						role.Play(Anim.Dianji);
+						_roleDidi.Play(Anim.Dianji);
 					}
 					_pressRole = true;
 					_pressEvent = null;
