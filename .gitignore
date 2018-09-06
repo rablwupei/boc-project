@@ -9,4 +9,6 @@ boc-unity/Temp/
 boc-unity/obj/
 share/
 wp/
+obj/
+bin/
 
