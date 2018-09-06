@@ -8,6 +8,7 @@ namespace wuyy.fk {
 
 	public class UIVideo : UIAbstract {
 
+		public CanvasGroup tipsRoot;
 		public CanvasGroup loaderRoot;
 		public CanvasGroup logoRoot;
 
@@ -19,19 +20,17 @@ namespace wuyy.fk {
 		public Text title;
 		public Slider slider;
 
-		public Button touch;
 
 		public override void Init () {
 			base.Init ();
 
-			DOTween.defaultEaseType = Ease.Linear;
+			tipsRoot.alpha = 1f;
 			leftImage.fillAmount = 0.12f;
 			rightImage.fillAmount = 0f;
 			title.SetAlpha(0);
 			wenjianjia.SetAlpha(0);
 			tips.SetAlpha(0);
 			text.SetAlpha(0);
-			touch.gameObject.SetActive(false);
 
 			loaderRoot.alpha = 0f;
 			logoRoot.alpha = 0f;
@@ -65,7 +64,12 @@ namespace wuyy.fk {
 			yield return slider.DOValue(1f, 10f).WaitForCompletion();
 			yield return loaderRoot.DOFade(0f, 1f).WaitForCompletion();
 			yield return logoRoot.DOFade(1f, 1f).WaitForCompletion();
-			touch.gameObject.SetActive(true);
+
+			yield return new WaitForSeconds(1f);
+
+			yield return tipsRoot.DOFade(0f, 1f).WaitForCompletion();
+
+			Next();
 		}
 
 		IEnumerator ReplaceTextAnim() {

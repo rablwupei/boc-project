@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace wuyy.fk {
 
@@ -19,8 +20,23 @@ namespace wuyy.fk {
 		}
 
 		void Start() {
+			Screen.fullScreen = true;
+			Cursor.visible = true;
+			Input.multiTouchEnabled = false;
+			AudioListener.volume = PlayerPrefs.GetFloat(Key_volume, 1f);
+			DOTween.defaultEaseType = Ease.Linear;
+
 			Next();
 		}
+
+		public const string Key_volume = "baibian_volume";
+
+		void Update() {
+			if (Input.GetKeyDown(KeyCode.Tab)) {
+				Cursor.visible = !Cursor.visible;
+			}
+		}
+
 
 
 		public Transform uiRoot;
