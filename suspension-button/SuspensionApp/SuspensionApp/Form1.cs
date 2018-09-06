@@ -29,10 +29,12 @@ namespace SuspensionApp {
 
         protected override void OnLoad(EventArgs e) {
             this.TopMost = true;
-            this.Width = 48 + 25;
-            this.Height = 23 + 25;
-            this.Top = Screen.PrimaryScreen.Bounds.Height - Height - 60;
-            this.Left = 60;
+            var side = 25;
+            this.Width = 48 + side;
+            this.Height = 23 + side;
+            this.Top = 155 - 19;
+            this.Left = 304 - 19;
+            //this.Top = Screen.PrimaryScreen.Bounds.Height - Height - 60;
         }
 
         //protected override void OnPaint(PaintEventArgs e) {

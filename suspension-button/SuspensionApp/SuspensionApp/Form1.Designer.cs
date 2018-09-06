@@ -32,7 +32,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(48, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "关闭";
+            this.button1.Text = "退出";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
