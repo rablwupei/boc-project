@@ -1,12 +1,11 @@
-boc-unity/Library/
+Library/
 *.csproj
 *.sln
 *.userprefs
 .vs
-boc-unity/Assets/ZFBrowser/
-boc-unity/Assets/ZFBrowser.meta
-boc-unity/Temp/
-boc-unity/obj/
+ZFBrowser/
+ZFBrowser.meta
+Temp/
 share/
 wp/
 obj/
