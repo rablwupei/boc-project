@@ -66,7 +66,8 @@ namespace wuyy.fk {
 
 		IEnumerator DoInitLoading() {
 			yield return loaderRoot.DOFade(1f, 1f).WaitForCompletion();
-			yield return slider.DOValue(1f, 10f).WaitForCompletion();
+			var length = Fengkong.isNormal ? 10f : 2f;
+			yield return slider.DOValue(1f, length).WaitForCompletion();
 			yield return loaderRoot.DOFade(0f, 1f).WaitForCompletion();
 			yield return logoRoot.DOFade(1f, 1f).WaitForCompletion();
 

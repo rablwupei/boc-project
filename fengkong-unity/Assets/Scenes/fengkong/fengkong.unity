@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02bc0975f0dba4492bd08f0a94744410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fastPlay: 0
+  _fastPlay: 1
   uiRoot: {fileID: 2108984636}
   uis:
   - {fileID: 114133079879571192, guid: f74d6edd2a4b04b28bfd47a68af4e580, type: 2}

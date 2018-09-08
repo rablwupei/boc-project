@@ -11,6 +11,7 @@ namespace wuyy.fk {
 
 		public void HideClick() {
 			if (!_isHide) {
+				_isHide = true;
 				StartCoroutine(DoHide());
 			}
 		}
@@ -18,14 +19,25 @@ namespace wuyy.fk {
 		bool _isHide;
 
 		IEnumerator DoHide() {
-			_isHide = true;
+			var length = Fengkong.PlaySound("3-1");
+			var fadeLength = 2f;
+
+			if (Fengkong.isNormal) {
+				yield return new WaitForSeconds(length - fadeLength);
+			}
+
 			Tween tween = null;
 			foreach (var item in hideList) {
-				tween = item.DOFade(0f, 0.5f);
+				tween = item.DOFade(0f, fadeLength);
 			}
 			if (tween != null) {
 				yield return tween.WaitForCompletion();
 			}
+
+			while (Fengkong.instance.audioSound.isPlaying) {
+				yield return null;
+			}
+
 			Fengkong.instance.Next();
 		}
 		
