@@ -493,12 +493,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02bc0975f0dba4492bd08f0a94744410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fastPlay: 0
   uiRoot: {fileID: 2108984636}
   uis:
   - {fileID: 114133079879571192, guid: f74d6edd2a4b04b28bfd47a68af4e580, type: 2}
   - {fileID: 114625012253446404, guid: bd87274427bf041219191b93a5bc7656, type: 2}
   - {fileID: 114545946664583018, guid: 8f0c2f7d120074c7aa26d3909452a00b, type: 2}
   - {fileID: 114592570378309686, guid: 3365dbc8b12094ac48e0fab5dbc9b5bc, type: 2}
+  audioMusic: {fileID: 532879751}
+  audioSound: {fileID: 513433943}
 --- !u!4 &1053469912
 Transform:
   m_ObjectHideFlags: 0

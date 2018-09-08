@@ -10,8 +10,22 @@ namespace wuyy.fk {
 
 		public Image fg;
 
+		bool _click;
+
 		public void FgClick() {
-			fg.DOFade(0f, 1f).OnComplete(Next);
+			if (!_click) {
+				_click = true;
+				StartCoroutine(DoFinish());
+			}
+		}
+
+		IEnumerator DoFinish() {
+			if (Fengkong.isNormal) {
+				var length = Fengkong.PlaySound("1");
+				yield return new WaitForSeconds(length - 2f);
+			}
+			yield return fg.DOFade(0f, 2f).WaitForCompletion();
+			Next();
 		}
 
 	}

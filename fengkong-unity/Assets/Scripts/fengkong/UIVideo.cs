@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Video;
 
 namespace wuyy.fk {
 
@@ -20,9 +21,13 @@ namespace wuyy.fk {
 		public Text title;
 		public Slider slider;
 
+		public VideoPlayer player;
 
 		public override void Init () {
 			base.Init ();
+
+			player.SetTargetAudioSource(0, Fengkong.instance.audioSound);
+			player.Play();
 
 			tipsRoot.alpha = 1f;
 			leftImage.fillAmount = 0.12f;
@@ -69,6 +74,9 @@ namespace wuyy.fk {
 
 			yield return tipsRoot.DOFade(0f, 1f).WaitForCompletion();
 
+			while (Fengkong.isNormal && player.isPlaying) {
+				yield return null;
+			}
 			Next();
 		}
 

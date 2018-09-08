@@ -581,6 +581,7 @@ MonoBehaviour:
   text: {fileID: 114999865798392500}
   title: {fileID: 114531877149851690}
   slider: {fileID: 114598393605226424}
+  player: {fileID: 328024670121574006}
 --- !u!114 &114632533817180890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4694,7 +4695,7 @@ VideoPlayer:
   m_AspectRatio: 2
   m_DataSource: 0
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
+  m_AudioOutputMode: 1
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
@@ -4703,7 +4704,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
