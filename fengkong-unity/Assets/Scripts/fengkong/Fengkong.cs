@@ -20,7 +20,6 @@ namespace wuyy.fk {
 		}
 
 		void Start() {
-			Screen.fullScreen = true;
 			Cursor.visible = true;
 			Input.multiTouchEnabled = false;
 			AudioListener.volume = PlayerPrefs.GetFloat(Key_volume, 1f);

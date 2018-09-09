@@ -7,7 +7,8 @@ using System.Xml.Serialization;
 
 public class WindowMod : MonoBehaviour
 {
-	public Rect screenPosition;
+	[System.NonSerialized]
+	public Rect screenPosition = new Rect(0f, 0f, 7680f, 1080f);
 
 	#if UNITY_STANDALONE && !UNITY_EDITOR
 	[DllImport("user32.dll")]
@@ -23,6 +24,7 @@ public class WindowMod : MonoBehaviour
 
 	void Start()
 	{
+		Screen.fullScreen = false;
 		SetWindowLong(GetActiveWindow(), GWL_STYLE, WS_BORDER);
 		SetWindowPos(GetActiveWindow(), -1, (int)screenPosition.x, (int)screenPosition.y, (int)screenPosition.width, (int)screenPosition.height, SWP_SHOWWINDOW);
 	}
