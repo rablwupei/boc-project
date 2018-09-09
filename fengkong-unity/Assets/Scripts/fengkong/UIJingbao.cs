@@ -2,21 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 namespace wuyy.fk {
 
 	public class UIJingbao : UIAbstract {
 
 		public CanvasGroup[] hideList;
+		public Animation animWait;
+		public Button nextButton;
 
-		public void HideClick() {
-			if (!_isHide) {
-				_isHide = true;
-				StartCoroutine(DoHide());
-			}
+		public override void Init () {
+			base.Init();
+
+			nextButton.enabled = false;
+			nextButton.onClick.AddListener(HideClick);
+			StartCoroutine(DoWait());
 		}
 
-		bool _isHide;
+		IEnumerator DoWait() {
+			while (animWait.isPlaying) {
+				yield return null;
+			}
+			while (Fengkong.instance.audioSound.isPlaying && Fengkong.isNormal) {
+				yield return null;
+			}
+			nextButton.enabled = true;
+		}
+
+		public void HideClick() {
+			nextButton.enabled = false;
+			StartCoroutine(DoHide());
+		}
 
 		IEnumerator DoHide() {
 			var length = Fengkong.PlaySound("3-1");

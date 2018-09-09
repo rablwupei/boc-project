@@ -55,13 +55,44 @@ namespace wuyy.fk {
 				GameObject.Destroy(_ui.gameObject);
 				_ui = null;
 			}
+
+			if (_index == 0) {
+				DestroyPercentTouch();
+			}
 			_ui = Instantiate(uis[_index]);
 			_ui.transform.SetParent(uiRoot, false);
 			_ui.Init();
 			_index = ++_index % uis.Count;
 		}
 
-		//sounds
+		public void ResetAndNext() {
+			_index = 0;
+			Next();
+		}
+
+		// UIPercentTouch
+
+		public UIPercentTouch percentTouchPrefab;
+		UIPercentTouch _percentTouch;
+		public UIPercentTouch percentTouch {
+			get {
+				if (_percentTouch == null) {
+					_percentTouch = Instantiate(percentTouchPrefab);
+					_percentTouch.transform.SetParent(uiRoot, false);
+				}
+				return _percentTouch;
+			}
+		}
+
+		void DestroyPercentTouch() {
+			if (_percentTouch != null) {
+				_percentTouch.gameObject.SetActive(false);
+				Destroy(_percentTouch);
+				_percentTouch = null;
+			}
+		}
+
+		// sounds
 
 
 		public AudioSource audioMusic;
@@ -93,16 +124,18 @@ namespace wuyy.fk {
 			return Resources.Load<AudioClip>("Sounds/" + name);
 		}
 
-		public static float PlaySound(string name) {
+		public static float PlaySound(string name, bool loop = false) {
 			var clip = GetClip(name);
-			return PlaySound(clip);
+			return PlaySound(clip, loop);
 		}
 
-		public static float PlaySound(AudioClip clip) {
+		public static float PlaySound(AudioClip clip, bool loop = false) {
 			var audioSound = Fengkong.instance.audioSound;
 			if (clip && audioSound) {
 				audioSound.Stop();
-				audioSound.PlayOneShot(clip);
+				audioSound.loop = loop;
+				audioSound.clip = clip;
+				audioSound.Play();
 				return clip.length;
 			}
 			return 0f;
@@ -112,6 +145,7 @@ namespace wuyy.fk {
 			var audioSound = Fengkong.instance.audioSound;
 			if (audioSound) {
 				audioSound.Stop();
+				audioSound.clip = null;
 			}
 		}
 	}
