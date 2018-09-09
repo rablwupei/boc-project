@@ -10,6 +10,10 @@ namespace wuyy.fk {
 			Fengkong.PlaySound(name);
 		}
 
+		public void PlaySoundLoop(string name) {
+			Fengkong.PlaySound(name, true);
+		}
+
 	}
 
 

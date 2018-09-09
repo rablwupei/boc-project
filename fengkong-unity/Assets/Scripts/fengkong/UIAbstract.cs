@@ -6,6 +6,18 @@ namespace wuyy.fk {
 
 	public class UIAbstract : MonoBehaviour {
 
+		public UIPercentTouch percentTouch {
+			get {
+				return Fengkong.instance.percentTouch;
+			}
+		}
+
+		public AudioSource audioSound {
+			get {
+				return Fengkong.instance.audioSound;
+			}
+		}
+
 		public virtual void Init() {
 			
 		}

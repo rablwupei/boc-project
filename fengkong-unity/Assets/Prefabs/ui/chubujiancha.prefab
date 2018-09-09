@@ -3434,7 +3434,7 @@ Animation:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1093914696638716}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 090a3baa9f05ea64ab2d6b57c6085d22, type: 2}
   m_Animations:

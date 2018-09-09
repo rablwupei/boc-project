@@ -10,13 +10,9 @@ namespace wuyy.fk {
 
 		public Image fg;
 
-		bool _click;
-
-		public void FgClick() {
-			if (!_click) {
-				_click = true;
-				StartCoroutine(DoFinish());
-			}
+		public void FgClick(Button button) {
+			button.enabled = false;
+			StartCoroutine(DoFinish());
 		}
 
 		IEnumerator DoFinish() {
