@@ -22,8 +22,13 @@ namespace wuyy.fk {
 			}
 		}
 
-		public void SetJielun(int index) {
-			ResetJielunPanel(jielun);
+		public void SetJielun(string index) {
+			ResetJielunPanel(jielun, delegate {
+				var trans = jielun.transform.Find(index);
+				if (trans) {
+					trans.gameObject.SetActive(true);
+				}
+			});
 		}
 
 		void ResetJielunPanel(CanvasGroup group, Action callback = null) {
@@ -33,13 +38,15 @@ namespace wuyy.fk {
 		CanvasGroup _group;
 
 		IEnumerator DoResetJielunPanel(CanvasGroup group, Action callback = null) {
-			if (_group) {
-				yield return _group.DOFade(0f, 0.5f).WaitForCompletion();
+			if (_group != group) {
+				if (_group) {
+					yield return _group.DOFade(0f, 0.5f).WaitForCompletion();
+				}
+				_group = group;
+				group.gameObject.SetActive(true);
+				group.alpha = 0f;
+				yield return group.DOFade(1f, 0.5f).WaitForCompletion();
 			}
-			_group = group;
-			group.gameObject.SetActive(true);
-			group.alpha = 0f;
-			yield return group.DOFade(1f, 0.5f).WaitForCompletion();
 			if (callback != null) {
 				callback();
 			}
@@ -72,7 +79,7 @@ namespace wuyy.fk {
 		float _numTime;
 		float _numTimeMax;
 
-		public void SetPercent(int percent, float time = 2f) {
+		public void SetPercent(int percent, float time = 1f) {
 			if (time <= 0f) {
 				_num = percent;
 				_numStart = percent;

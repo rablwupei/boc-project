@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 224421292825436568}
   - component: {fileID: 114592570378309686}
   - component: {fileID: 111003759448777358}
+  - component: {fileID: 114062031179061924}
   m_Layer: 5
   m_Name: chubujiancha
   m_TagString: Untagged
@@ -3751,6 +3752,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114062031179061924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093914696638716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fec41fc35e0344e6a46faf1fd77eaea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114063407714984374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6505,6 +6517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e643b23763edd464496ac5b6a1eb532c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 111003759448777358}
 --- !u!114 &114595768741176592
 MonoBehaviour:
   m_ObjectHideFlags: 1

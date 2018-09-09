@@ -14,6 +14,26 @@ namespace wuyy.fk {
 			Fengkong.PlaySound(name, true);
 		}
 
+		public void SetPercent(int percent) {
+			Fengkong.instance.percentTouch.SetPercent(percent);
+		}
+
+		public void SetJielun(string index) {
+			Fengkong.instance.percentTouch.SetJielun(index);
+		}
+
+		public void AnimPause() {
+			var anim = GetComponent<Animation>();
+			anim[anim.clip.name].normalizedSpeed = 0f;
+		}
+
+		public void AnimPauseWithValue(float value) {
+			var anim = GetComponent<Animation>();
+			anim[anim.clip.name].normalizedSpeed = 0f;
+			anim[anim.clip.name].time = value / 60f;
+			anim.Sample();
+		}
+
 	}
 
 

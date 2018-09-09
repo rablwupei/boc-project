@@ -6,43 +6,59 @@ namespace wuyy.fk {
 
 	public class UIChubujiancha : UIAbstract {
 
+		Animation _anim;
+		float _time;
+		float _timeMax;
+
 		public override void Init() {
+			_anim = GetComponent<Animation>();
+			_anim.enabled = false;
 			base.Init();
 
 			percentTouch.SetActive(true);
-			percentTouch.SetPercent(40);
-			percentTouch.SetJielun(1);
 			StartCoroutine(DoPlaySound());
 		}
 
+
+		void Update() {
+			if (_time < _timeMax) {
+				_time += Time.deltaTime;
+				_time = Mathf.Min(_time, _timeMax);
+				_anim[_anim.clip.name].time = _time;
+				_anim.Sample();
+			}
+		}
+
 		IEnumerator DoPlaySound() {
+			_timeMax = 227f/60;
+
+			percentTouch.SetPercent(30);
+			percentTouch.SetJielun("0");
 			Fengkong.PlaySound("4-1");
 			while (audioSound.isPlaying) {
 				yield return null;
 			}
+			percentTouch.SetPercent(40);
+			percentTouch.SetJielun("1");
 			Fengkong.PlaySound("5");
 			while (audioSound.isPlaying) {
 				yield return null;
 			}
+
 			Fengkong.PlaySound("6");
 			while (audioSound.isPlaying) {
 				yield return null;
 			}
+
+			_timeMax = float.MaxValue;
 			percentTouch.SetChubujiancha(delegate {
-				if (!_doYesOrDoNo) {
-					_doYesOrDoNo = true;
-					StartCoroutine(DoYes());
-				}
+				StartCoroutine(DoYes());
 			}, delegate {
-				if (!_doYesOrDoNo) {
-					_doYesOrDoNo = true;
-					StartCoroutine(DoNo());
-				}
+				StartCoroutine(DoNo());
 			});
 		}
 
 
-		bool _doYesOrDoNo;
 		IEnumerator DoYes() {
 			Fengkong.PlaySound("8-1");
 			while (audioSound.isPlaying) {

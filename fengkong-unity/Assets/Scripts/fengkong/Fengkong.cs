@@ -45,6 +45,13 @@ namespace wuyy.fk {
 
 		public Transform uiRoot;
 		public List<UIAbstract> uis;
+		public List<UIAbstract> debug_uis;
+
+		public List<UIAbstract> useUIs {
+			get {
+				return debug_uis.Count > 0 ? debug_uis : uis;
+			}
+		}
 
 		int _index;
 		UIAbstract _ui;
@@ -59,10 +66,13 @@ namespace wuyy.fk {
 			if (_index == 0) {
 				DestroyPercentTouch();
 			}
-			_ui = Instantiate(uis[_index]);
+			while (useUIs[_index] == null) {
+				_index = ++_index % useUIs.Count;
+			}
+			_ui = Instantiate(useUIs[_index]);
 			_ui.transform.SetParent(uiRoot, false);
 			_ui.Init();
-			_index = ++_index % uis.Count;
+			_index = ++_index % useUIs.Count;
 		}
 
 		public void ResetAndNext() {
@@ -87,7 +97,7 @@ namespace wuyy.fk {
 		void DestroyPercentTouch() {
 			if (_percentTouch != null) {
 				_percentTouch.gameObject.SetActive(false);
-				Destroy(_percentTouch);
+				Destroy(_percentTouch.gameObject);
 				_percentTouch = null;
 			}
 		}

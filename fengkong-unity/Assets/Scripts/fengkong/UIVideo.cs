@@ -73,11 +73,12 @@ namespace wuyy.fk {
 
 			yield return new WaitForSeconds(1f);
 
-			yield return tipsRoot.DOFade(0f, 1f).WaitForCompletion();
-
 			while (Fengkong.isNormal && player.isPlaying) {
 				yield return null;
 			}
+
+			yield return tipsRoot.DOFade(0f, 1f).WaitForCompletion();
+
 			Next();
 		}
 
