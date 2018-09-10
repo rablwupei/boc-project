@@ -54,11 +54,7 @@ namespace wuyy.fk {
 			_timeMax = 435f/60f;
 			Fengkong.PlaySound("11");
 			percentTouch.SetJielun("5");
-			yield return new WaitForSeconds(4.5f);
-			while (audioSound.isPlaying) {
-				yield return null;
-			}
-
+			yield return new WaitForSeconds(4.9f);
 			_timeMax = float.MaxValue;
 			percentTouch.SetZhongyinwuyun(delegate {
 				Next();	
