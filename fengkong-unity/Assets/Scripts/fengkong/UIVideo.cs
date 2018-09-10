@@ -26,9 +26,6 @@ namespace wuyy.fk {
 		public override void Init () {
 			base.Init ();
 
-			player.SetTargetAudioSource(0, Fengkong.instance.audioSound);
-			player.Play();
-
 			tipsRoot.alpha = 1f;
 			leftImage.fillAmount = 0.12f;
 			rightImage.fillAmount = 0f;
@@ -44,6 +41,28 @@ namespace wuyy.fk {
 			ReplaceText();
 
 			StartCoroutine(DoInitTips());
+			StartCoroutine(DoPlay());
+		}
+
+		IEnumerator DoPlay() {
+			player.SetTargetAudioSource(0, Fengkong.instance.audioSound);
+			player.controlledAudioTrackCount = 1;
+			player.url = GetRootPath() + "/video.mp4";
+			player.Prepare();
+			while (!player.isPrepared) {
+				yield return null;
+			}
+			player.Play();
+		}
+
+		public static string GetRootPath() {
+			var path = Application.dataPath;
+			if (Application.platform == RuntimePlatform.OSXPlayer) {
+				path += "/../..";
+			} else if (Application.platform == RuntimePlatform.WindowsPlayer) {
+				path += "/..";
+			}
+			return path;
 		}
 
 		IEnumerator DoInitTips() {

@@ -14,6 +14,8 @@ namespace wuyy.fk {
 
 		public CanvasGroup jielun;
 		public CanvasGroup chubujiancha;
+		public CanvasGroup zhongyinwuyun;
+		public CanvasGroup yingjiyuan;
 
 		public void SetActive(bool value) {
 			gameObject.SetActive(value);
@@ -30,6 +32,7 @@ namespace wuyy.fk {
 				}
 			});
 		}
+
 
 		void ResetJielunPanel(CanvasGroup group, Action callback = null) {
 			StartCoroutine(DoResetJielunPanel(group, callback));
@@ -52,8 +55,9 @@ namespace wuyy.fk {
 			}
 		}
 
-		public void SetChubujiancha(params UnityAction[] actions) {
-			var buttons = chubujiancha.GetComponentsInChildren<Button>();
+
+		void SetButtons(CanvasGroup group, params UnityAction[] actions) {
+			var buttons = group.GetComponentsInChildren<Button>();
 			for (int i = 0; i < buttons.Length && i < actions.Length; i++) {
 				var button = buttons[i];
 				var action = actions[i];
@@ -66,11 +70,24 @@ namespace wuyy.fk {
 					}
 				});
 			}
-			ResetJielunPanel(chubujiancha, delegate {
+			ResetJielunPanel(group, delegate {
 				for (int i = 0; i < buttons.Length; i++) {
 					buttons[i].enabled = true;
 				}
 			});
+		}
+
+
+		public void SetChubujiancha(params UnityAction[] actions) {
+			SetButtons(chubujiancha, actions);
+		}
+
+		public void SetZhongyinwuyun(UnityAction callback) {
+			SetButtons(zhongyinwuyun, callback);
+		}
+
+		public void SetYingjiyuan(UnityAction callback) {
+			SetButtons(yingjiyuan, callback);
 		}
 
 		int _numStart;
@@ -95,9 +112,13 @@ namespace wuyy.fk {
 		}
 
 		void Update() {
-			if (_num < _numEnd) {
+			if (_num != _numEnd) {
 				_num = (int)Mathf.Lerp(_numStart, _numEnd, _numTime / _numTimeMax);
-				_num = Mathf.Min(_num, _numEnd);
+				if (_numStart < _numEnd) {
+					_num = Mathf.Min(_num, _numEnd);
+				} else {
+					_num = Mathf.Max(_num, _numEnd);
+				}
 				percent.text = _num + "%";
 				_numTime += Time.deltaTime;
 			}

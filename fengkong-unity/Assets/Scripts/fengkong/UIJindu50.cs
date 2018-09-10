@@ -43,12 +43,26 @@ namespace wuyy.fk {
 			Fengkong.PlaySound("10");
 			percentTouch.SetPercent(60);
 			percentTouch.SetJielun("3");
+			yield return new WaitForSeconds(7f);
+
+			percentTouch.SetPercent(75);
+			percentTouch.SetJielun("4");
 			while (audioSound.isPlaying) {
 				yield return null;
 			}
 
-			yield return new WaitForSeconds(2f);
-			Next();
+			_timeMax = 435f/60f;
+			Fengkong.PlaySound("11");
+			percentTouch.SetJielun("5");
+			yield return new WaitForSeconds(4.5f);
+			while (audioSound.isPlaying) {
+				yield return null;
+			}
+
+			_timeMax = float.MaxValue;
+			percentTouch.SetZhongyinwuyun(delegate {
+				Next();	
+			});
 		}
 
 	}
