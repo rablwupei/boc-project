@@ -12,6 +12,7 @@ namespace wuyy {
 
 		public GameObject gege;
 		public GameObject jiejie;
+		public GameObject jiejieZunqianguan;
 
 		Tweener _textTweener;
 
@@ -34,8 +35,15 @@ namespace wuyy {
 		public void Show(BaibianType baibianType, MenuItemType type, System.Action closeCallback) {
 			_closeCallback = closeCallback;
 			int value = (int)baibianType;
-			gege.SetActive(value % 2 != 0);
-			jiejie.SetActive(value % 2 == 0);
+			if (type == MenuItemType.宝宝存钱罐) {
+				gege.SetActive(false);
+				jiejie.SetActive(false);
+				jiejieZunqianguan.SetActive(true);
+			} else {
+				gege.SetActive(value % 2 != 0);
+				jiejie.SetActive(value % 2 == 0);
+				jiejieZunqianguan.SetActive(false);
+			}
 			gameObject.SetActive(true);
 			if (menuStrs.ContainsKey(type)) {
 				text.text = "";
