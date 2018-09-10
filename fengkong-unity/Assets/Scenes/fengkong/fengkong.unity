@@ -502,6 +502,7 @@ MonoBehaviour:
   - {fileID: 114545946664583018, guid: 8f0c2f7d120074c7aa26d3909452a00b, type: 2}
   - {fileID: 114592570378309686, guid: 3365dbc8b12094ac48e0fab5dbc9b5bc, type: 2}
   - {fileID: 114829123272778588, guid: 38bb6cb985d423f42a6f83fb7a4ea787, type: 2}
+  - {fileID: 114818455652058250, guid: 223ce20c9e811418c887e9e3beb52e06, type: 2}
   debug_uis: []
   percentTouchPrefab: {fileID: 114025497523176356, guid: f1920a6f7ab784bdd82057ea963ff543,
     type: 2}
@@ -531,12 +532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3042d5a6b684646648268ce9921940cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenPosition:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 7680
-    height: 1680
 --- !u!1 &2108984632
 GameObject:
   m_ObjectHideFlags: 0
