@@ -111,20 +111,25 @@ namespace wuyy.fk {
 			yield return text.DOFade(1f, 1f).WaitForCompletion();
 		}
 
+		int _index;
 		void ReplaceText() {
-			var keys = new List<string>(typeStr.Keys);
-			var index = Random.Range(0, keys.Count);
-			var key = keys[index];
-			title.text = key;
-			text.text = typeStr[key];
+			title.text = typeStr1[_index];
+			text.text = typeStr2[_index];
+			_index++;
+			_index = _index % typeStr1.Count;
 		}
 
-		static Dictionary<string, string> typeStr = new Dictionary<string, string>() {
-			{"tongnian",    "亲爱的小朋友，六周岁生日快乐！马上就要上学了，爸爸给你建了“教育基金”，购买了大额存单，妈妈还开通了宝宝存钱罐，祝小可爱学业有成，每天开心哦。"},
-			{"liuxue",    "还有半年就要去美国留学了，中国银行提供的存款证明、留学签证、学费购汇、海外开户见证、国际汇款等一站式服务，可以让你轻松搞定留学准备，还有更多惊喜等着你，如果资金短缺，留学贷款可以缓解财务压力，还想进一步了解留学国家情况的话，我们的“全球专家”可以更全面地答疑解惑，祝你留学顺利，学有所成。"},
-			{"chengjia",    "哇，听说你马上就要结婚了，祝福你哦，不过结婚开销一定很大吧，中国银行的消费分期、账单分期产品，可以满足你的大额消费需求，新婚海外旅行，别忘了选择中国银行的存款证明、外币兑换、外币现金预约、全球通信用卡，在国外买买买，回到国内记得来找中国银行代办退税哦。"},
-			{"caifu",    "时间过得真快，孩子都快上初中了吧，如果您想换房换车，中国银行的个人贷款，消费金融可以满足大额融资需求。家庭财富增值不可忽略，中国银行最新推出的中银慧投产品，提供个性化资产配置服务，为您的资产保值增值，建议重点关注一下啊。"},
-			{"wannian",    "马上就要退休了，五险一金和养老保险已经帮您办理好了，中国银行面向老年客户推出的常青树借记IC卡，提供多项专属服务，让您安享退休生活。"},
+		static List<string> typeStr1 = new List<string>() {
+			"RFID技术", 
+			"NB-IoT技术", 
+			"知识图谱", 
+			"基于语义识别的智能搜索", 
+		};
+		static List<string> typeStr2 = new List<string>() {
+			"RFID即无线射频识别，是集编码、载体、识别通讯等多种技术于一体的综合技术。",
+			"NB-IoT是窄带物联网的简称，是运营商构建于蜂窝网络充分利用现有GSM、LTE等现有网络衍生出来的新型通讯模式。",
+			"是由一些相互连接的实体和它们的属性构成，用来描述真实世界中存在的各种实体和概念，以及它们之间的关联关系。",
+			"基于语料库构建、词语级语义分析、句子级语义分析、篇章级语义分析、深度学习等技术，实现搜索的快速响应、信息整合、可视化展示。",
 		};
 
 	}

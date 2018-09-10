@@ -46,10 +46,7 @@ namespace wuyy.fk {
 			}
 
 			Fengkong.PlaySound("6");
-			while (audioSound.isPlaying) {
-				yield return null;
-			}
-
+			yield return new WaitForSeconds(5f);
 			_timeMax = float.MaxValue;
 			percentTouch.SetChubujiancha(delegate {
 				StartCoroutine(DoYes());
