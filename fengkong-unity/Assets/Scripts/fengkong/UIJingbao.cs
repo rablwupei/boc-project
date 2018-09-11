@@ -36,12 +36,7 @@ namespace wuyy.fk {
 		}
 
 		IEnumerator DoHide() {
-			var length = Fengkong.PlaySound("3-1");
-			var fadeLength = 2f;
-
-			if (Fengkong.isNormal) {
-				yield return new WaitForSeconds(length - fadeLength);
-			}
+			var fadeLength = 0.2f;
 
 			Tween tween = null;
 			foreach (var item in hideList) {
@@ -49,10 +44,6 @@ namespace wuyy.fk {
 			}
 			if (tween != null) {
 				yield return tween.WaitForCompletion();
-			}
-
-			while (Fengkong.instance.audioSound.isPlaying) {
-				yield return null;
 			}
 
 			Fengkong.instance.Next();

@@ -30,16 +30,24 @@ namespace wuyy.fk {
 		}
 
 		IEnumerator DoPlaySound() {
-			_timeMax = 227f/60;
+			_timeMax = 197f/60;
+
+			Fengkong.PlaySound("3-1");
+			while (audioSound.isPlaying) {
+				yield return null;
+			}
 
 			percentTouch.SetPercent(30);
 			percentTouch.SetJielun("0");
 			Fengkong.PlaySound("4-1");
+			yield return new WaitForSeconds(4f);
+			_timeMax = 231f/60;
 			while (audioSound.isPlaying) {
 				yield return null;
 			}
 			percentTouch.SetPercent(40);
 			percentTouch.SetJielun("1");
+			_timeMax = 300f/60;
 			Fengkong.PlaySound("5");
 			while (audioSound.isPlaying) {
 				yield return null;
