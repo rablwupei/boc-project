@@ -34,7 +34,7 @@ namespace wuyy.fk {
 				yield return null;
 			}
 
-			_timeMax = 423f/60;
+			_timeMax = 107f/60;
 			Fengkong.PlaySound("13");
 			yield return new WaitForSeconds(6f);
 			percentTouch.SetJielun("6");
@@ -42,12 +42,12 @@ namespace wuyy.fk {
 				yield return null;
 			}
 
-			_timeMax = 967f/60;
+			_timeMax = 294f/60;
 			Fengkong.PlaySound("14-1");
 			yield return new WaitForSeconds(4f);
 			percentTouch.SetPercent(90);
 			yield return new WaitForSeconds(1f);
-			_timeMax = 1491f/60;
+			_timeMax = 388f/60;
 			percentTouch.SetYingjiyuan(delegate {
 				StartCoroutine(DoPlay2());
 			});
@@ -55,6 +55,8 @@ namespace wuyy.fk {
 
 		IEnumerator DoPlay2() {
 			Fengkong.PlaySound("15-1");
+			yield return new WaitForSeconds(3f);
+			_timeMax = 475f/60;
 			while (audioSound.isPlaying) {
 				yield return null;
 			}

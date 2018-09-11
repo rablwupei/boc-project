@@ -29,7 +29,7 @@ namespace wuyy.fk {
 		}
 
 		IEnumerator DoPlay() {
-			_timeMax = 202f/60;
+			_timeMax = 199f/60;
 
 			Fengkong.PlaySound("9");
 			percentTouch.SetPercent(50);
@@ -38,23 +38,27 @@ namespace wuyy.fk {
 				yield return null;
 			}
 
-			_timeMax = 442f/60;
-
 			Fengkong.PlaySound("10");
 			percentTouch.SetPercent(60);
 			percentTouch.SetJielun("3");
-			yield return new WaitForSeconds(7f);
+
+			yield return new WaitForSeconds(4f);
+			_timeMax = 321f/60;
+			yield return new WaitForSeconds(3f);
 
 			percentTouch.SetPercent(75);
 			percentTouch.SetJielun("4");
+
+			yield return new WaitForSeconds(4f);
+			_timeMax = 589f/60f;
+
 			while (audioSound.isPlaying) {
 				yield return null;
 			}
 
-			_timeMax = 673f/60f;
 			Fengkong.PlaySound("11");
 			percentTouch.SetJielun("5");
-			yield return new WaitForSeconds(4.9f);
+			yield return new WaitForSeconds(4.5f);
 			_timeMax = float.MaxValue;
 			percentTouch.SetZhongyinwuyun(delegate {
 				Next();	
