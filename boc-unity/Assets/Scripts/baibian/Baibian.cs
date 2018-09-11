@@ -39,6 +39,9 @@ namespace wuyy {
 		public UIDuihuakuang uiDuihuakuang;
 		public UIWeb prefabUIWeb;
 
+		public List<TypeZimu> typeZimus;
+		public Image spriteZimu;
+
 		GameObject _bgShouye;
 		GameObject _shouyeJiantou;
 		public GameObject bgShouye {
@@ -246,6 +249,7 @@ namespace wuyy {
 		Animation _curBgfg;
 		public IEnumerator ChangeBgfg(BaibianType type) {
 			StopSound();
+			StopZimu();
 			yield return HideOldRoleBody(type);
 			if (_curBgfg) {
 				_curBgfg["chuxian"].speed = -1f;
@@ -270,15 +274,61 @@ namespace wuyy {
 			}
 			yield return ShowNewRoleBody(type);
 			if (type != BaibianType.none) {
-				HideJiejieTip();
-				uiDuihuakuang.Show(type, ShowJiejieTip);
+				//HideJiejieTip();
+				//uiDuihuakuang.Show(type, ShowJiejieTip);
 				foreach (var item in uiGuocheng.menus) {
 					if (item.type == type) {
 						PlaySound(item.audioClip);
+						PlayZimu(type);
 						break;
 					}
 				}
+			} else {
+				StopZimu();
 			}
+		}
+
+		// zimu
+
+		void PlayZimu(BaibianType type) {
+			var zimus = GetZimu(type);
+			if (zimus == null) {
+				StopZimu();
+				return;
+			}
+			spriteZimu.color = new Color(1f, 1f, 1f, 0f);
+			spriteZimu.gameObject.SetActive(true);
+			spriteZimu.StopAllCoroutines();
+			spriteZimu.StartCoroutine(DoZimu(zimus));
+		}
+
+		IEnumerator DoZimu(TypeZimu zimus) {
+			for (int i = 0; i < zimus.zimus.Count; i++) {
+				var zimu = zimus.zimus[i];
+				var time = zimus.times[i];
+				spriteZimu.sprite = zimu;
+				spriteZimu.SetNativeSize();
+				spriteZimu.DOFade(1, 0.2f);
+				yield return new WaitForSeconds(time - 0.2f);
+				yield return spriteZimu.DOFade(0, 0.2f).WaitForCompletion();
+			}
+			StopZimu();
+		}
+
+		void StopZimu() {
+			spriteZimu.StopAllCoroutines();
+			spriteZimu.color = new Color(1f, 1f, 1f, 0f);
+			spriteZimu.sprite = null;
+			spriteZimu.gameObject.SetActive(false);
+		}
+
+		TypeZimu GetZimu(BaibianType type) {
+			foreach (var item in typeZimus) {
+				if (item.type == type) {
+					return item;
+				}
+			}
+			return null;
 		}
 
 		// touch
@@ -487,12 +537,14 @@ namespace wuyy {
                 RestartAllSound();
             } else {
                 StopAllSound();
+				StopZimu();
             }
         }
 
         private void OnApplicationPause(bool pause) {
             if (pause) {
-                StopAllSound();
+				StopAllSound();
+				StopZimu();
             } else {
                 RestartAllSound();
             }
@@ -517,5 +569,28 @@ namespace wuyy {
 			return ((int)obj).GetHashCode();
 		}
 	}
+
+	[Serializable]
+	public class TypeZimu {
+		public BaibianType type;
+		public List<Sprite> zimus;
+
+		List<float> _times;
+		public List<float> times {
+			get {
+				if (_times == null) {
+					_times = new List<float>(zimus.Count);
+					foreach (var item in zimus) {
+						var time0 = float.Parse(item.name.Split('-')[0]);
+						var time1 = float.Parse(item.name.Split('-')[1]);
+						_times.Add(time1 - time0);
+					}
+				}
+				return _times;
+			}
+		}
+
+	}
+
 
 }
