@@ -20,7 +20,7 @@ namespace wuyy.fk {
 		}
 
 		void Start() {
-			Cursor.visible = true;
+			Cursor.visible = false;
 			Input.multiTouchEnabled = false;
 			AudioListener.volume = PlayerPrefs.GetFloat(Key_volume, 1f);
 			DOTween.defaultEaseType = Ease.Linear;
