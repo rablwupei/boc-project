@@ -30,6 +30,8 @@ namespace wuyy {
 		public class MenuItem {
 			public MenuItemType type;
 			public Button button;
+			public Animation anim;
+			public AnimationClip clip;
 		}
 		public List<MenuItem> menuItems;
 
@@ -65,13 +67,15 @@ namespace wuyy {
 
 		public void OpenMenu(Vector3 pos, BaibianType type, System.Action closeCallback) {
 			foreach (var item in menus) {
-				if (item.type == type) {
-					uiOptionRoot.SetActive(true);
-					uiOptionPanel.anchoredPosition = pos;
-					item.go.SetActive(true);
-					_closeCallback = closeCallback;
-				} else {
-					item.go.SetActive(false);
+				if (item.go) {
+					if (item.type == type) {
+						uiOptionRoot.SetActive(true);
+						uiOptionPanel.anchoredPosition = pos;
+						item.go.SetActive(true);
+						_closeCallback = closeCallback;
+					} else {
+						item.go.SetActive(false);
+					}
 				}
 			}
 		}
@@ -89,16 +93,43 @@ namespace wuyy {
 		}
 
 		public void CaidanClick(MenuItemType type) {
-			uiOptionRoot.SetActive(false);
 			if (type == MenuItemType.专家连线) {
+				uiOptionRoot.SetActive(false);
 				Baibian.instance.OpenUrl(WebType.专家连线);
 				if (_closeCallback != null) {
 					_closeCallback();
 					_closeCallback = null;
 				}
-			} else if (type != MenuItemType.Empty) {
+			} else if (type == MenuItemType.宝宝存钱罐) {
+				uiOptionRoot.SetActive(false);
 				Baibian.instance.uiDuihuakuang.Show(Baibian.instance.baibianType, type, _closeCallback);
 				_closeCallback = null;
+			} else if (type != MenuItemType.Empty) {
+				foreach (var item in menuItems) {
+					if (item.button && item.type == type) {
+						var anim = item.anim;
+						var name = item.clip.name;
+						anim.Play(name);
+						var state = anim[name];
+						Baibian.instance.AddCoverTouchClick(delegate{
+							if (anim.isPlaying) {
+								return false;
+							}
+							state.enabled = true;
+							state.weight = 1f;
+							state.normalizedTime = 0f;
+							anim.Sample();
+							state.enabled = false;
+							state.weight = 0f;
+							if (_closeCallback != null) {
+								_closeCallback();
+								_closeCallback = null;
+							}
+							uiOptionRoot.SetActive(false);
+							return true;
+						});
+					}
+				}
 			}
 		}
 

@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using System;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace wuyy {
 
@@ -41,6 +42,7 @@ namespace wuyy {
 
 		public List<TypeZimu> typeZimus;
 		public Image spriteZimu;
+		public Button coverTouch;
 
 		GameObject _bgShouye;
 		GameObject _shouyeJiantou;
@@ -557,6 +559,16 @@ namespace wuyy {
             UIWeb.Show(type);
         }
 
+		// coverTouch
+		public void AddCoverTouchClick(Func<bool> callback) {
+			coverTouch.gameObject.SetActive(true);
+			coverTouch.onClick.RemoveAllListeners();
+			coverTouch.onClick.AddListener(delegate {
+				if (callback()) {
+					coverTouch.gameObject.SetActive(false);
+				}
+			});
+		}
 
 	}
 
