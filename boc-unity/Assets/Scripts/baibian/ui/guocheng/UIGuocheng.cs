@@ -32,6 +32,7 @@ namespace wuyy {
 			public Button button;
 			public Animation anim;
 			public AnimationClip clip;
+			public AudioClip audio;
 		}
 		public List<MenuItem> menuItems;
 
@@ -111,6 +112,7 @@ namespace wuyy {
 						var name = item.clip.name;
 						anim.Play(name);
 						var state = anim[name];
+						Baibian.instance.PlaySound(item.audio);
 						Baibian.instance.AddCoverTouchClick(delegate{
 							if (anim.isPlaying) {
 								return false;
