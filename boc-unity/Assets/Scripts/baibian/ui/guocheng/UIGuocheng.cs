@@ -113,6 +113,7 @@ namespace wuyy {
 						anim.Play(name);
 						var state = anim[name];
 						Baibian.instance.PlaySound(item.audio);
+						Baibian.instance.StopZimu();
 						Baibian.instance.AddCoverTouchClick(delegate{
 							if (anim.isPlaying) {
 								return false;

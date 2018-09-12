@@ -968,22 +968,22 @@ MonoBehaviour:
   - type: 8
     button: {fileID: 420328833}
     anim: {fileID: 175834678}
-    clip: {fileID: 7400000, guid: 7358930150bd93f409fa4719c6b5b0de, type: 2}
+    clip: {fileID: 7400000, guid: 092e5bc638b13b84b83dbf4aaac40f39, type: 2}
     audio: {fileID: 8300000, guid: bfea13f4a407c41c7bbf0d83ae246085, type: 3}
   - type: 7
     button: {fileID: 1483463811}
     anim: {fileID: 175834678}
-    clip: {fileID: 7400000, guid: 092e5bc638b13b84b83dbf4aaac40f39, type: 2}
+    clip: {fileID: 7400000, guid: 7358930150bd93f409fa4719c6b5b0de, type: 2}
     audio: {fileID: 8300000, guid: d5866b36c9c884e5883564b7e821d6a9, type: 3}
   - type: 6
     button: {fileID: 915334440}
     anim: {fileID: 1856843641}
-    clip: {fileID: 7400000, guid: 8029df173b5575047845ca73abefe5c6, type: 2}
+    clip: {fileID: 7400000, guid: 8ce3c2fa27466c54180571bf74465414, type: 2}
     audio: {fileID: 8300000, guid: 5d4f71e0d040746409b0732c743e7ce1, type: 3}
   - type: 5
     button: {fileID: 960624191}
     anim: {fileID: 1856843641}
-    clip: {fileID: 7400000, guid: 8ce3c2fa27466c54180571bf74465414, type: 2}
+    clip: {fileID: 7400000, guid: 8029df173b5575047845ca73abefe5c6, type: 2}
     audio: {fileID: 8300000, guid: 958c63f307ad5411286bbad74b6e2c1c, type: 3}
   - type: 3
     button: {fileID: 337865833}

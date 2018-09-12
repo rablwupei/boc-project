@@ -317,7 +317,7 @@ namespace wuyy {
 			StopZimu();
 		}
 
-		void StopZimu() {
+		public void StopZimu() {
 			spriteZimu.StopAllCoroutines();
 			spriteZimu.color = new Color(1f, 1f, 1f, 0f);
 			spriteZimu.sprite = null;
