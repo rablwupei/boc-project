@@ -1143,7 +1143,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4851945074171176}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -8.66009}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -8.85184}
 --- !u!4 &4310570914763518
 Transform:
   m_ObjectHideFlags: 1
@@ -1516,12 +1516,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1448953016213552}
   m_LocalRotation: {x: -0, y: -0, z: -0.30266386, w: 0.95309734}
-  m_LocalPosition: {x: 0.445, y: 0.128, z: 0}
+  m_LocalPosition: {x: 0.428, y: 0.134, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4851945074171176}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.5861435}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.2867851}
 --- !u!4 &4715074634968824
 Transform:
   m_ObjectHideFlags: 1
@@ -1534,7 +1534,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4851945074171176}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 16.720345}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 16.973362}
 --- !u!4 &4751599297749746
 Transform:
   m_ObjectHideFlags: 1
@@ -1565,7 +1565,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4851945074171176}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -42.55584}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -42.485004}
 --- !u!4 &4792559554427452
 Transform:
   m_ObjectHideFlags: 1
@@ -1670,11 +1670,11 @@ Transform:
   m_GameObject: {fileID: 1863880957089556}
   m_LocalRotation: {x: -0, y: -0, z: 0.3118807, w: 0.9501212}
   m_LocalPosition: {x: -0.059, y: 0.115, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children: []
   m_Father: {fileID: 4851945074171176}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.0717049}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -6.380497}
 --- !u!4 &4880278849793422
 Transform:
   m_ObjectHideFlags: 1
@@ -1906,6 +1906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFollow: {fileID: 4237228892873506}
+  tipTrans: {fileID: 0}
 --- !u!114 &114449824113141612
 MonoBehaviour:
   m_ObjectHideFlags: 1
