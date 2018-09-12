@@ -101,10 +101,6 @@ namespace wuyy {
 					_closeCallback();
 					_closeCallback = null;
 				}
-			} else if (type == MenuItemType.宝宝存钱罐) {
-				uiOptionRoot.SetActive(false);
-				Baibian.instance.uiDuihuakuang.Show(Baibian.instance.baibianType, type, _closeCallback);
-				_closeCallback = null;
 			} else if (type != MenuItemType.Empty) {
 				foreach (var item in menuItems) {
 					if (item.button && item.type == type) {
@@ -129,9 +125,13 @@ namespace wuyy {
 								_closeCallback = null;
 							}
 							uiOptionRoot.SetActive(false);
+							Baibian.instance.uiDuihuakuang.Hide();
 							return true;
 						});
 					}
+				}
+				if (type == MenuItemType.宝宝存钱罐) {
+					Baibian.instance.uiDuihuakuang.Show(Baibian.instance.baibianType, type);
 				}
 			}
 		}

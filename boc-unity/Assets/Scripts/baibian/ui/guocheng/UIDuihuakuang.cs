@@ -32,7 +32,7 @@ namespace wuyy {
 
 		System.Action _closeCallback;
 
-		public void Show(BaibianType baibianType, MenuItemType type, System.Action closeCallback) {
+		public void Show(BaibianType baibianType, MenuItemType type, System.Action closeCallback = null) {
 			_closeCallback = closeCallback;
 			int value = (int)baibianType;
 			if (type == MenuItemType.宝宝存钱罐) {
@@ -54,6 +54,10 @@ namespace wuyy {
 			} else {
 				text.text = "";
 			}
+		}
+
+		public void Hide() {
+			gameObject.SetActive(false);
 		}
 
 		public void Show(BaibianType baibianType, System.Action closeCallback) {

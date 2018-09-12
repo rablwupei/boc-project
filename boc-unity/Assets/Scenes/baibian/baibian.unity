@@ -615,7 +615,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &90493077
 RectTransform:
   m_ObjectHideFlags: 0
@@ -957,8 +957,8 @@ MonoBehaviour:
     audio: {fileID: 8300000, guid: 08f1e35cf94464d41abd113e97aba49e, type: 3}
   - type: 11
     button: {fileID: 55888200}
-    anim: {fileID: 0}
-    clip: {fileID: 0}
+    anim: {fileID: 2095641590}
+    clip: {fileID: 7400000, guid: a78b4f95164a747a6942be97344765e8, type: 2}
     audio: {fileID: 8300000, guid: fa3200b0d22b74f9b9371eb7a35daff7, type: 3}
   - type: 9
     button: {fileID: 1802745852}
@@ -3316,7 +3316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &497187534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10568,7 +10568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 126.4, y: 114.8}
+  m_AnchoredPosition: {x: 118.4, y: 114.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1802745850
@@ -11614,7 +11614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1993901311
 RectTransform:
   m_ObjectHideFlags: 0
