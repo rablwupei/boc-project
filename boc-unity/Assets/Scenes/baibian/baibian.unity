@@ -10892,34 +10892,37 @@ MonoBehaviour:
   typeZimus:
   - type: 0
     zimus:
-    - {fileID: 21300000, guid: 7a2ac46440e6e43cba4f0f875632955d, type: 3}
-    - {fileID: 21300000, guid: 045f455ec36b34ae0bae29a1b1643c18, type: 3}
-    - {fileID: 21300000, guid: 1dd162716fcd74d51b31d54fc1d42c74, type: 3}
+    - {fileID: 21300000, guid: 7d6e4daf93c0444b2a3dbecf7237054a, type: 3}
+    - {fileID: 21300000, guid: 824d5678af21d4e6ea9deb5a513f42b1, type: 3}
+    - {fileID: 21300000, guid: 1c4230355802b49e5bae3f0a133f9415, type: 3}
   - type: 1
     zimus:
-    - {fileID: 21300000, guid: 52aac85572521486788c5867b85f3869, type: 3}
-    - {fileID: 21300000, guid: f359d5413702644f8a1f387b067fa23e, type: 3}
-    - {fileID: 21300000, guid: 0abdf6024fa9049ba82cc68bb4f4057b, type: 3}
-    - {fileID: 21300000, guid: 69aa421bcedd0455cb6f397c418f149b, type: 3}
-    - {fileID: 21300000, guid: 7f32120d529a54110a33de2832f0febb, type: 3}
+    - {fileID: 21300000, guid: 51c2ad8b59427406fa2d8320a72be8e4, type: 3}
+    - {fileID: 21300000, guid: 3d907bb6c6c6a4434a00cb2cc6fc0edd, type: 3}
+    - {fileID: 21300000, guid: 6c2940a9af1284b44b081e2a3717b49a, type: 3}
+    - {fileID: 21300000, guid: 5fcff33cd173f4cd0b7622beec4e82c7, type: 3}
+    - {fileID: 21300000, guid: 53b2d040376e740808c3383de01caffa, type: 3}
+    - {fileID: 21300000, guid: b0eabd8ac75c6450eb0657ad424e8c33, type: 3}
   - type: 2
     zimus:
-    - {fileID: 21300000, guid: 2d041433be451482d8b81cfa799451e6, type: 3}
-    - {fileID: 21300000, guid: b7101d250765d428797069549302b446, type: 3}
-    - {fileID: 21300000, guid: 1f63e8b545728480b83af6035c6ee779, type: 3}
-    - {fileID: 21300000, guid: 85a1054d568cf46dc97b9feddd83659c, type: 3}
-    - {fileID: 21300000, guid: 9b3104fe3a16b4495a40c2b141ad17ac, type: 3}
+    - {fileID: 21300000, guid: a0b0841c6bb694b3b96d6a19fd2576af, type: 3}
+    - {fileID: 21300000, guid: 452c0eaff55c74e439f97bd0f4105db6, type: 3}
+    - {fileID: 21300000, guid: fc53febd74f7641088b4367b11316003, type: 3}
+    - {fileID: 21300000, guid: 4a8425c9df58843fb8fbb802728c5544, type: 3}
+    - {fileID: 21300000, guid: 725a74b2ef097499b9a5e9917c0c63b4, type: 3}
+    - {fileID: 21300000, guid: 9d3af5dd1e7b94a179c099b943e5e05c, type: 3}
   - type: 3
     zimus:
-    - {fileID: 21300000, guid: 2c074684da2fe4bfe961cae05a8826b5, type: 3}
-    - {fileID: 21300000, guid: dd652c6cee2fa42cf8f241895c7c3fb8, type: 3}
-    - {fileID: 21300000, guid: 5f5d00626a9f744d5872df517ad1d92b, type: 3}
-    - {fileID: 21300000, guid: df2cad9276dbd42e29942350ab25b10b, type: 3}
+    - {fileID: 21300000, guid: 6de328893f0d948db90b7ebe3be1f523, type: 3}
+    - {fileID: 21300000, guid: a6052e04873d54326abe4e328d357033, type: 3}
+    - {fileID: 21300000, guid: 869cabcd5fd544081b636b83537091b2, type: 3}
+    - {fileID: 21300000, guid: e5cb8faedfab94d2ba4d33a1ea62f3e6, type: 3}
+    - {fileID: 21300000, guid: bb7ec1e8689ca46108526801807f7b6e, type: 3}
   - type: 4
     zimus:
-    - {fileID: 21300000, guid: ea532cf371ede42caaf9fb1006df4b29, type: 3}
-    - {fileID: 21300000, guid: 9df92cd58372a4d4f806441c1ae06786, type: 3}
-    - {fileID: 21300000, guid: 0b1e9050868a04d05a558f886e3a7ecf, type: 3}
+    - {fileID: 21300000, guid: d12727ccaf75e4393b6c846f0b8668b0, type: 3}
+    - {fileID: 21300000, guid: b7a6eb759b3b14e52af77ea6757be36b, type: 3}
+    - {fileID: 21300000, guid: 37a5df2c4a2d64585ab0b44232e8c7d7, type: 3}
   spriteZimu: {fileID: 28929168}
   coverTouch: {fileID: 1628310319}
   typeButtons:
