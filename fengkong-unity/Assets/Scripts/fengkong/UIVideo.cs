@@ -45,7 +45,7 @@ namespace wuyy.fk {
 		}
 
 		IEnumerator DoPlay() {
-			player.SetTargetAudioSource(0, Fengkong.instance.audioSound);
+			player.SetTargetAudioSource(0, Fengkong.instance.audioVideo);
 			player.controlledAudioTrackCount = 1;
 			player.url = GetRootPath() + "/video.mp4";
 			player.Prepare();

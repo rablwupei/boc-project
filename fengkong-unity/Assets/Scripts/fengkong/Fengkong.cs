@@ -106,6 +106,7 @@ namespace wuyy.fk {
 
 		public AudioSource audioMusic;
 		public AudioSource audioSound;
+		public AudioSource audioVideo;
 
 		public static void RestartAllSound() {
 			var audioMusic = Fengkong.instance.audioMusic;
@@ -115,6 +116,10 @@ namespace wuyy.fk {
 			var audioSound = Fengkong.instance.audioSound;
 			if (audioSound) {
 				audioSound.gameObject.SetActive(true);
+			}
+			var audioVideo = Fengkong.instance.audioSound;
+			if (audioVideo) {
+				audioVideo.gameObject.SetActive(true);
 			}
 		}
 
@@ -126,6 +131,10 @@ namespace wuyy.fk {
 			var audioSound = Fengkong.instance.audioSound;
 			if (audioSound) {
 				audioSound.gameObject.SetActive(false);
+			}
+			var audioVideo = Fengkong.instance.audioSound;
+			if (audioVideo) {
+				audioVideo.gameObject.SetActive(false);
 			}
 		}
 

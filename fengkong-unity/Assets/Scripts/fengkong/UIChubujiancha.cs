@@ -32,14 +32,14 @@ namespace wuyy.fk {
 		IEnumerator DoPlaySound() {
 			_timeMax = 197f/60;
 
-			Fengkong.PlaySound("3-1");
+			Fengkong.PlaySound("3");
 			while (audioSound.isPlaying) {
 				yield return null;
 			}
 
 			percentTouch.SetPercent(30);
 			percentTouch.SetJielun("0");
-			Fengkong.PlaySound("4-1");
+			Fengkong.PlaySound("4");
 			yield return new WaitForSeconds(4f);
 			_timeMax = 231f/60;
 			while (audioSound.isPlaying) {
@@ -65,7 +65,7 @@ namespace wuyy.fk {
 
 
 		IEnumerator DoYes() {
-			Fengkong.PlaySound("8-1");
+			Fengkong.PlaySound("8");
 			while (audioSound.isPlaying) {
 				yield return null;
 			}
@@ -77,7 +77,7 @@ namespace wuyy.fk {
 			while (audioSound.isPlaying) {
 				yield return null;
 			}
-			Fengkong.instance.ResetAndNext();
+			Next();
 		}
 
 	}

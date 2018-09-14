@@ -124,6 +124,11 @@ namespace wuyy.fk {
 			}
 		}
 
+		public void TiaoguoClick() {
+			Fengkong.StopSound();
+			Fengkong.instance.ResetAndNext();
+		}
+
 	}
 
 }

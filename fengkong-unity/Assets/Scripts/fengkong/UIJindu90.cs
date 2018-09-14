@@ -43,18 +43,19 @@ namespace wuyy.fk {
 			}
 
 			_timeMax = 294f/60;
-			Fengkong.PlaySound("14-1");
+			Fengkong.PlaySound("14");
 			yield return new WaitForSeconds(4f);
 			percentTouch.SetPercent(90);
 			yield return new WaitForSeconds(1f);
 			_timeMax = 388f/60;
 			percentTouch.SetYingjiyuan(delegate {
+				percentTouch.SetJielun("-1");
 				StartCoroutine(DoPlay2());
 			});
 		}
 
 		IEnumerator DoPlay2() {
-			Fengkong.PlaySound("15-1");
+			Fengkong.PlaySound("15");
 			yield return new WaitForSeconds(3f);
 			_timeMax = 475f/60;
 			while (audioSound.isPlaying) {
