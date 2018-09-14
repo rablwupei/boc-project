@@ -559,6 +559,10 @@ namespace wuyy {
             UIWeb.Show(type);
         }
 
+        public void OpenZhuanjia() {
+            OpenUrl(WebType.专家连线);
+        }
+
 		// coverTouch
 		public void AddCoverTouchClick(Func<bool> callback) {
 			coverTouch.gameObject.SetActive(true);
