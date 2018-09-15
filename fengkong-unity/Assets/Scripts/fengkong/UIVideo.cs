@@ -12,6 +12,7 @@ namespace wuyy.fk {
 		public CanvasGroup tipsRoot;
 		public CanvasGroup loaderRoot;
 		public CanvasGroup logoRoot;
+		public CanvasGroup otherRoot;
 
 		public Image tips;
 		public Image wenjianjia;
@@ -37,6 +38,7 @@ namespace wuyy.fk {
 			loaderRoot.alpha = 0f;
 			logoRoot.alpha = 0f;
 			slider.value = 0f;
+			otherRoot.alpha = 0f;
 
 			ReplaceText();
 
@@ -70,6 +72,7 @@ namespace wuyy.fk {
 
 			leftImage.DOFillAmount(0.63f, 2f);
 			yield return rightImage.DOFillAmount(1, 2f).WaitForCompletion();
+			otherRoot.DOFade(1f, 1f);
 			yield return wenjianjia.DOFade(1f, 1f).WaitForCompletion();
 
 			StartCoroutine(DoInitLoading());
@@ -117,6 +120,10 @@ namespace wuyy.fk {
 			text.text = typeStr2[_index];
 			_index++;
 			_index = _index % typeStr1.Count;
+		}
+
+		public void ButtonTiaoguo() {
+			Next();
 		}
 
 		static List<string> typeStr1 = new List<string>() {

@@ -68,14 +68,24 @@ namespace wuyy.fk {
 			}
 
 			percentTouch.SetPercent(0);
-			Fengkong.PlaySound("17");
-			yield return new WaitForSeconds(1.5f);
+			Fengkong.PlaySound("19");
 			_timeMax = float.MaxValue;
-			percentTouch.SetChubujiancha(delegate {
-				StartCoroutine(DoYes());
-			}, delegate {
-				StartCoroutine(DoNo());
-			});
+			while (audioSound.isPlaying) {
+				yield return null;
+			}
+
+			yield return new WaitForSeconds(1f);
+
+			Fengkong.instance.ResetAndNext();
+
+//			Fengkong.PlaySound("17");
+//			yield return new WaitForSeconds(1.5f);
+//			_timeMax = float.MaxValue;
+//			percentTouch.SetChubujiancha(delegate {
+//				StartCoroutine(DoYes());
+//			}, delegate {
+//				StartCoroutine(DoNo());
+//			});
 		}
 
 

@@ -77,7 +77,7 @@ namespace wuyy.fk {
 			while (audioSound.isPlaying) {
 				yield return null;
 			}
-			Next();
+			Fengkong.instance.ResetAndNext();
 		}
 
 	}
